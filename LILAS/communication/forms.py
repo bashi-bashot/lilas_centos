@@ -25,7 +25,7 @@ class NameForm(forms.Form):
     heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
     positionSpinner = forms.ChoiceField(widget = forms.Select(), choices = ())
     correspondantSpinner = forms.ChoiceField(label='Position : ', choices = ())
-    #selectionTypeSpinner = forms.ChoiceField(label='',choices =listeTypeStats)
+    selectionTypeSpinner = forms.ChoiceField(label='',choices =listeTypeStats)
     
     def __init__(self, *args, **kwargs): #Fonction appelée a chaque appel du formulaire dans le code python
         #C'est une fonction nécessaire au remplissage dynamique du choiceField positionSpinner
@@ -60,7 +60,7 @@ class NameForm(forms.Form):
  
     
     
-class StatSelectForm(forms.Form):
-    selectionTypeSpinner = forms.ChoiceField(label='',choices =listeTypeStats)
+# class StatSelectForm(forms.Form):
+    # selectionTypeSpinner = forms.ChoiceField(label='',choices =listeTypeStats)
 
     

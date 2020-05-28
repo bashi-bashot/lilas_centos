@@ -131,7 +131,7 @@
                                 <th id="boutonDureeCumulee"class="colonne3">Durée Cumulée (s)</th>
                                 <th id="boutonNbEchec" class="colonne4">Nombre d'échec</th>
                                 <th id="boutonNbRefus" class="colonne5">Nombre de refus</th>
-                                <th id="boutonTOccupation" class="colonne6">Occupation FX</th>
+                                <th id="boutonTOccupation" class="colonne6">Taux d'occupation</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,7 +142,7 @@
                                 <td class="colonne3">{{ stat.2 }}</td>
                                 <td class="colonne4">{{ stat.3 }}</td>
                                 <td class="colonne5">{{ stat.4 }}</td>
-                                <td class="colonne6">{{ stat.5.0 }} - {{ stat.5.1 }}</td>
+                                <td class="colonne6">{{ stat.5 }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

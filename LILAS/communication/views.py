@@ -53,7 +53,7 @@ def index(request):
     
     listeDeTicket = []
     formulaireDates = NameForm(request.POST, choice_list_sect = GLOB_TAB_SECT, choice_list_corr = GLOB_TAB_CORREXTE)
-    formulaireStatistiques = StatSelectForm(request.POST, )
+    # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------
     
     #1ère création du contexte
@@ -249,6 +249,7 @@ def index(request):
             listeStat = []
             typeElement = formulaireDates.cleaned_data['selectionTypeSpinner']
             formulaireDates = NameForm(request.POST, choice_list_sect = listeSecteursSpinner, choice_list_corr = listeCorrespondantSpinner)
+            
             if typeElement == '1' : #INDIFFERENT 
                 print("ENTREE DANS LE IF ELEMENT = 1")
                 listeStat = statistiquesIndifferent(GLOB_TAB_APPELS)
@@ -632,10 +633,10 @@ def index(request):
             #print(len(listeStat))
             
             
-            #context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat} #, 'ListeStats':listeStat
+            context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat} #, 'ListeStats':listeStat
             
 
-            context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 
+            # context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 
             
             
             #On sauvegarde le formulaire et les appels dans une variable globale
@@ -643,7 +644,7 @@ def index(request):
             #a = formulaireDates.cleaned_data['dateDebut']
             #print("*****************"+str(a))
 
-            GLOB_FORM_STATISTIQUES = formulaireStatistiques
+            # GLOB_FORM_STATISTIQUES = formulaireStatistiques
             GLOB_TAB_APPELS = listeDates
             
             # print("----------------------------")

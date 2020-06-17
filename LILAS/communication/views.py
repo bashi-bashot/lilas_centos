@@ -252,7 +252,7 @@ def index(request):
             
             if typeElement == '1' : #INDIFFERENT 
                 print("ENTREE DANS LE IF ELEMENT = 1")
-                listeStat = statistiquesIndifferent(GLOB_TAB_APPELS)
+                listeStat = statistiquesIndifferent(listeDates)
                 
             if typeElement == '2' : #SECTEUR
                 print("ENTREE DANS LE IF ELEMENT = 2")

@@ -344,7 +344,7 @@ def index(request):
                 
                
                 
-                for u in GLOB_TAB_APPELS :
+                for u in listeDates :
                     #u est un Appel
                    
                     if (u.type == 'ENTRANT') :
@@ -448,7 +448,7 @@ def index(request):
                 listeFaisceaux = [] #Liste dans laquelle on va répertorier tous les faisceaux rencontrés
                 indice_entrant = -1
                 indice_sortant = -1
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     if appel.fx_entrant != 'fx_xxxx_e' :
                         #On s'occupe de FX_ENTRANT
                         

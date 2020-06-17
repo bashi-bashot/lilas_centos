@@ -494,7 +494,7 @@ def index(request):
                 for i in range(len(listeAppelsParFaisceaux)):
                     listeAppelsParFaisceaux[i] = []
                     
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     #On memorise les indice de listeFaisceaux correspondant aux faisceaux entrants et sortants de l'appel
                     ind_entrant = -1
                     ind_sortant = -1

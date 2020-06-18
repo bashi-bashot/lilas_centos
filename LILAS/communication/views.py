@@ -543,7 +543,7 @@ def index(request):
                             if(simult == simultMax) :
                                 #On calcule la durée qui s'est écoulée depuis le dernier jalon
                                 if(j != 0) : #C'est normalement impossible mais bon
-                                    if(tabJalons[j-1][1] == 1) #on s'assure que le j-1 est une ouverture
+                                    if(tabJalons[j-1][1] == 1) : #on s'assure que le j-1 est une ouverture
                                         duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
                             
                             simult = simult - 1

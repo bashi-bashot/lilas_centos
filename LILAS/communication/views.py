@@ -448,10 +448,9 @@ def index(request):
                 listeFaisceaux = [] #Liste dans laquelle on va répertorier tous les faisceaux rencontrés
                 indice_entrant = -1
                 indice_sortant = -1
+                
                 for appel in listeDates :
-                    if appel.fx_entrant != 'fx_xxxx_e' :
-                        #On s'occupe de FX_ENTRANT
-                        
+                    if appel.fx_entrant != 'fx_xxxx_e' : #On s'occupe de FX_ENTRANT
                         if appel.fx_entrant not in listeFaisceaux :
                             listeStat.append([appel.fx_entrant])
                             listeFaisceaux.append(appel.fx_entrant)
@@ -510,6 +509,7 @@ def index(request):
                         
                 #------------------------------
                 
+
                 #print("Calcul de l'occupation Faisceau :")
                 #print("Remplissage du tableau de calcul")
                 for i in range(len(listeAppelsParFaisceaux)):
@@ -530,18 +530,26 @@ def index(request):
                     compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
                     simultMax = 0
                     simult = 0
-                    for couple in tabJalons :
-                        if(couple[1] == 1):#C'est un début d'appel
+                    duree = 0 #Duree pendant laquelle le nb max d'appels simultanés sur la période est atteint
+                    for j in range(len(tabJalons)) :
+                        if(tabJalons[j][1] == 1): #Début d'appel
                             simult = simult + 1
-                            if(simult > simultMax):
+                            if(simult > simultMax): #On reset les variables
                                 simultMax = simult
                                 compteur_max = 1
                             if(simult == simultMax):
                                 compteur_max = compteur_max + 1
-                        elif(couple[1] == 0):
+                        elif(tabJalons[j][1] == 0): #Fin d'appel
+                            if(simult == simultMax) :
+                                #On calcule la durée qui s'est écoulée depuis le dernier jalon
+                                if(j != 0) : #C'est normalement impossible mais bon
+                                    duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
+                            
                             simult = simult - 1
+
+                            
                     #print("Ecriture de l'occupation faisceau")
-                    listeStat[i][5] = (simultMax, compteur_max)
+                    listeStat[i][5] = (simultMax, compteur_max, duree)
                     
                         
                 #------------------------------

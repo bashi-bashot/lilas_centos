@@ -519,8 +519,8 @@ def index(request):
                         heureDebAppel = appel.heure
                         datetimeDebAppel = datetime(int(str(dateDebAppel)[0:4]),int(str(dateDebAppel)[5:7]),int(str(dateDebAppel)[8:10]),heureDebAppel.hour,heureDebAppel.minute, heureDebAppel.second)
                         datetimeFinAppel = datetimeDebAppel + timedelta(seconds=appel.duree)
-                        ouverture=(datetimeDebAppel, 1)
-                        fermeture = (datetimeFinAppel, 0)
+                        ouverture=(datetimeDebAppel, 0)
+                        fermeture = (datetimeFinAppel, 1)
                         tabJalons.append(ouverture)
                         tabJalons.append(fermeture)
                     
@@ -532,18 +532,18 @@ def index(request):
                     simult = 0
                     duree = 0 #Duree pendant laquelle le nb max d'appels simultanés sur la période est atteint
                     for j in range(len(tabJalons)) :
-                        if(tabJalons[j][1] == 1): #Début d'appel
+                        if(tabJalons[j][1] == 0): #Début d'appel
                             simult = simult + 1
                             if(simult > simultMax): #On reset les variables
                                 simultMax = simult
                                 compteur_max = 1
                             if(simult == simultMax):
                                 compteur_max = compteur_max + 1
-                        elif(tabJalons[j][1] == 0): #Fin d'appel
+                        elif(tabJalons[j][1] == 1): #Fin d'appel
                             if(simult == simultMax) :
                                 #On calcule la durée qui s'est écoulée depuis le dernier jalon
                                 if(j != 0) : #C'est normalement impossible mais bon
-                                    if(tabJalons[j-1][1] == 1) : #on s'assure que le j-1 est une ouverture
+                                    if(tabJalons[j-1][1] == 0) : #on s'assure que le j-1 est une ouverture
                                         duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
                             
                             simult = simult - 1

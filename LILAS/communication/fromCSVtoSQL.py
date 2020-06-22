@@ -135,9 +135,9 @@ def createAppel(t, listeLif):
         # On part de la DATE de l'appel, puis on prend tous les appels a cette date la. 
 
         listeDAppels = Date.objects.filter(date__exact = d.date()) 
-        if(listeDAppels.count() != 1) :
+        if(listeDAppels.count() == 0) :
             print("Date non existante dans la base de donnees")
-        else :
+        elif listeDAppels.count() == 1 :
             listeDAppels = Date.objects.filter(date__exact = d.date())[0].Appel.all()
         
             #if Appel.objects.filter(date__date__contains=d.date(), heure__contains=d.time(), appelant__contains=apple, line_appelante__contains=fsx_e, appele__contains=applant, line_appele__contains=fsx_a).count()==1:

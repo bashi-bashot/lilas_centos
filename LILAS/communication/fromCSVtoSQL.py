@@ -133,143 +133,144 @@ def createAppel(t, listeLif):
         
         #On verifie si l'appel est un doublon :
         # On part de la DATE de l'appel, puis on prend tous les appels a cette date la. 
+
+        listeDAppels = Date.objects.filter(date__date__exact = d.date()) 
+        if(listeDAppels.count() != 1) :
+            print("Date non existante dans la base de données")
+        else :
+            listeDAppels = Date.objects.filter(date__date__exact = d.date())[0].Appel.all()
         
-        
-        print("************TAILLE DE LA LISTE : "+ Date.objects.filter(date__exact = d.date()).count())
+            #if Appel.objects.filter(date__date__contains=d.date(), heure__contains=d.time(), appelant__contains=apple, line_appelante__contains=fsx_e, appele__contains=applant, line_appele__contains=fsx_a).count()==1:
+            #if Appel.objects.filter(date__date__contains=d.date()).filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:
+            #    print("Doublon :"+d.__str__()+" "+applant+" "+apple)
+            #    pass
+            
+            if listeDAppels.objects.filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:
+                print("Doublon :"+d.__str__()+" "+applant+" "+apple)
+                pass
 
-        listeDAppels = Date.objects.filter(date__date__exact = d.date())[0].Appel.all() #Liste de tous les appels qui ont ete passes a la date d deja sauvegardes.
-
-        #if Appel.objects.filter(date__date__contains=d.date(), heure__contains=d.time(), appelant__contains=apple, line_appelante__contains=fsx_e, appele__contains=applant, line_appele__contains=fsx_a).count()==1:
-        #if Appel.objects.filter(date__date__contains=d.date()).filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:
-        #    print("Doublon :"+d.__str__()+" "+applant+" "+apple)
-        #    pass
-        
-        if listeDAppels.objects.filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:
-            print("Doublon :"+d.__str__()+" "+applant+" "+apple)
-            pass
-
-        else:
-            dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
-            
-            #Traitemeent sur le champ "ETAT" du ticket : On ne regarde pas ce qui suit 'en'
-            
-            chaineTemoin = 'en'
-            chaineATraiter = t[k][29][17:-1]
-            etatAppel = ''
-            
-            for i in range(len(chaineATraiter)-1):
-                if (chaineATraiter[i:i+2] == chaineTemoin):
-                    etatAppel = chaineATraiter[0:i-1]
-                    break
-                    
-            #On cherche maintenant le nom associe aux numeros dans les annuaires
-            
-            
-            num_appelant = applant
-            num_appele = apple
-            
-            nomAppelant =""
-            nomAppele=""
-                    
-                    
-            #On regarde si ces deux numeros apparaissent dans la liste des numeros exterieurs ou des numeros de secteurs (tabSecteurs et tabExterieurs sont intialises en debut de fonction)
-            for j in range(len(tabExterieurs)):
-                if num_appelant == tabExterieurs[j].numero :
-                    nomAppelant = tabExterieurs[j].nom
-                    
-                    
-                if num_appele == tabExterieurs[j].numero :
-                    nomAppele = tabExterieurs[j].nom
-                    
+            else:
+                dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
                 
-            for j in range(len(tabSecteurs)):
-                if num_appelant == tabSecteurs[j].numero :
-                    nomAppelant = tabSecteurs[j].nom
-                    
-                    
-                if num_appele == tabSecteurs[j].numero :
-                    nomAppele = tabSecteurs[j].nom
-                    
-            #Si on a pas trouve de correspondance, on recopie le numero dans l'intitule 
-            if nomAppelant == "" :
-                nomAppelant = applant
+                #Traitemeent sur le champ "ETAT" du ticket : On ne regarde pas ce qui suit 'en'
                 
-            if nomAppele == "" :
-                nomAppele = apple
+                chaineTemoin = 'en'
+                chaineATraiter = t[k][29][17:-1]
+                etatAppel = ''
                 
-            #On recupere maintenant "les faisceaux" a partir des lignes ATTENTION, il s'agiti ici de la LIF et non pas du faisceau
-            #fsx_e est la ligne appelante de la forme "[VoIP] - 7H_3_VoIP"
-            #fsx_a est la ligne appelee de la forme "[VoIP] - 7H_3_VoIP"
-            
-            
-            
-            ligne1 = fsx_e
-            ligne2 = fsx_a
-            faisceauAppelant = 'fx_xxxx_a'
-            faisceauAppele = 'fx_xxxx_e'
-            indiceTiret = -1
-            indiceFin = -1
-            
-            #LIGNE - 1
-            for i in range(len(ligne1)):
-                if ligne1[i] == '-' :
-                    indiceTiret = i
-                    break
-            #l'indice i est '-', l'indice i+1 est ' ' et l'indice i+2 est le debut de l'intitule de la ligne
-            # print("indiceTiret :"+str(indiceTiret))
-
-            if(indiceTiret != -1):
-                ligne1 = ligne1[i+2:len(ligne1)] #linge1 vaut la chaine exacte de la carte LIF
-                ligne1 = ligne1.replace(" ", "") #On enleve les espaces
-                for p in listeLif : #On cherche maintenant une correspondance dans nos LIFs
-                    if p.nom == ligne1 :
-                        faisceauAppelant = p.faisceau.nom
+                for i in range(len(chaineATraiter)-1):
+                    if (chaineATraiter[i:i+2] == chaineTemoin):
+                        etatAppel = chaineATraiter[0:i-1]
                         break
-            else :
-                print("Erreur determination LIF")
+                        
+                #On cherche maintenant le nom associe aux numeros dans les annuaires
                 
                 
-            #LIGNE - 2
-            indiceTiret = -1 #On reinitialise le marqueur
-            for i in range(len(ligne2)):
-                if ligne2[i] == '-' :
-                    indiceTiret = i
-                    break
-            #l'indice i est '-', l'indice i+1 est ' ' et l'indice i+2 est le debut de l'intitule de la ligne
-            
-            if(indiceTiret != -1):
-                ligne2 = ligne2[i+2:len(ligne2)]
-                ligne2 = ligne2.replace(" ", "")
-                for p in listeLif :
-                    if p.nom == ligne2 :
-                        faisceauAppele = p.faisceau.nom
+                num_appelant = applant
+                num_appele = apple
+                
+                nomAppelant =""
+                nomAppele=""
+                        
+                        
+                #On regarde si ces deux numeros apparaissent dans la liste des numeros exterieurs ou des numeros de secteurs (tabSecteurs et tabExterieurs sont intialises en debut de fonction)
+                for j in range(len(tabExterieurs)):
+                    if num_appelant == tabExterieurs[j].numero :
+                        nomAppelant = tabExterieurs[j].nom
+                        
+                        
+                    if num_appele == tabExterieurs[j].numero :
+                        nomAppele = tabExterieurs[j].nom
+                        
+                    
+                for j in range(len(tabSecteurs)):
+                    if num_appelant == tabSecteurs[j].numero :
+                        nomAppelant = tabSecteurs[j].nom
+                        
+                        
+                    if num_appele == tabSecteurs[j].numero :
+                        nomAppele = tabSecteurs[j].nom
+                        
+                #Si on a pas trouve de correspondance, on recopie le numero dans l'intitule 
+                if nomAppelant == "" :
+                    nomAppelant = applant
+                    
+                if nomAppele == "" :
+                    nomAppele = apple
+                    
+                #On recupere maintenant "les faisceaux" a partir des lignes ATTENTION, il s'agiti ici de la LIF et non pas du faisceau
+                #fsx_e est la ligne appelante de la forme "[VoIP] - 7H_3_VoIP"
+                #fsx_a est la ligne appelee de la forme "[VoIP] - 7H_3_VoIP"
+                
+                
+                
+                ligne1 = fsx_e
+                ligne2 = fsx_a
+                faisceauAppelant = 'fx_xxxx_a'
+                faisceauAppele = 'fx_xxxx_e'
+                indiceTiret = -1
+                indiceFin = -1
+                
+                #LIGNE - 1
+                for i in range(len(ligne1)):
+                    if ligne1[i] == '-' :
+                        indiceTiret = i
                         break
-            else :
-                print("Erreur determination LIF")
-                  
-                  
-            #On s'occupe maintenant de determiner s'il s'agit d'un appel passe en SU+TP ou d'un debordement Numeris
-            sutp = False
-            numeris = False
-            temo = "SecoursUltime"
-            temo2="Numeris"
-            
-            t[k][31] = t[k][31].replace(" ","")
-            
-            for l in range(len(t[k][31])-len(temo)):
-                if t[k][31][l:l+len(temo)] == temo :
-                    sutp = True
-                    print("SU+TP")
-                    break
-            for l in range(len(t[k][31])-len(temo2)):        
-                if t[k][31][l:l+len(temo2)] == temo2 :
-                    numeris = True
-                    print("SDA")
-                    break
-            
-            
-            a = Appel(appelant=apple, appele= applant, date = date_a_sauvegarder, heure = d.time(), type = t[k][25].replace('"',''),duree = int(dur.total_seconds()), liberation = t[k][30][14:-1].replace('"',''), line_appelante = fsx_a, line_appele = fsx_e, etat = etatAppel, nom_appele = nomAppelant , nom_appelant = nomAppele, fx_entrant = faisceauAppele, fx_sortant = faisceauAppelant, SUTP = sutp, SDA = numeris)
-            a.save()
+                #l'indice i est '-', l'indice i+1 est ' ' et l'indice i+2 est le debut de l'intitule de la ligne
+                # print("indiceTiret :"+str(indiceTiret))
+
+                if(indiceTiret != -1):
+                    ligne1 = ligne1[i+2:len(ligne1)] #linge1 vaut la chaine exacte de la carte LIF
+                    ligne1 = ligne1.replace(" ", "") #On enleve les espaces
+                    for p in listeLif : #On cherche maintenant une correspondance dans nos LIFs
+                        if p.nom == ligne1 :
+                            faisceauAppelant = p.faisceau.nom
+                            break
+                else :
+                    print("Erreur determination LIF")
+                    
+                    
+                #LIGNE - 2
+                indiceTiret = -1 #On reinitialise le marqueur
+                for i in range(len(ligne2)):
+                    if ligne2[i] == '-' :
+                        indiceTiret = i
+                        break
+                #l'indice i est '-', l'indice i+1 est ' ' et l'indice i+2 est le debut de l'intitule de la ligne
+                
+                if(indiceTiret != -1):
+                    ligne2 = ligne2[i+2:len(ligne2)]
+                    ligne2 = ligne2.replace(" ", "")
+                    for p in listeLif :
+                        if p.nom == ligne2 :
+                            faisceauAppele = p.faisceau.nom
+                            break
+                else :
+                    print("Erreur determination LIF")
+                    
+                    
+                #On s'occupe maintenant de determiner s'il s'agit d'un appel passe en SU+TP ou d'un debordement Numeris
+                sutp = False
+                numeris = False
+                temo = "SecoursUltime"
+                temo2="Numeris"
+                
+                t[k][31] = t[k][31].replace(" ","")
+                
+                for l in range(len(t[k][31])-len(temo)):
+                    if t[k][31][l:l+len(temo)] == temo :
+                        sutp = True
+                        print("SU+TP")
+                        break
+                for l in range(len(t[k][31])-len(temo2)):        
+                    if t[k][31][l:l+len(temo2)] == temo2 :
+                        numeris = True
+                        print("SDA")
+                        break
+                
+                
+                a = Appel(appelant=apple, appele= applant, date = date_a_sauvegarder, heure = d.time(), type = t[k][25].replace('"',''),duree = int(dur.total_seconds()), liberation = t[k][30][14:-1].replace('"',''), line_appelante = fsx_a, line_appele = fsx_e, etat = etatAppel, nom_appele = nomAppelant , nom_appelant = nomAppele, fx_entrant = faisceauAppele, fx_sortant = faisceauAppelant, SUTP = sutp, SDA = numeris)
+                a.save()
       
     return 0
     

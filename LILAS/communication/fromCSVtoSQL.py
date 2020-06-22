@@ -136,7 +136,7 @@ def createAppel(t, listeLif):
 
         listeDAppels = Date.objects.filter(date__date__exact = d.date()) 
         if(listeDAppels.count() != 1) :
-            print("Date non existante dans la base de données")
+            print("Date non existante dans la base de donnees")
         else :
             listeDAppels = Date.objects.filter(date__date__exact = d.date())[0].Appel.all()
         

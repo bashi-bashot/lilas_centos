@@ -137,7 +137,7 @@ def createAppel(t, listeLif):
         
         print("************TAILLE DE LA LISTE : "+ Date.objects.filter(date__exact = d.date()).count())
 
-        listeDAppels = Date.objects.filter(date__exact = d.date())[0].Appel.all() #Liste de tous les appels qui ont ete passes a la date d deja sauvegardes.
+        listeDAppels = Date.objects.filter(date__date__exact = d.date())[0].Appel.all() #Liste de tous les appels qui ont ete passes a la date d deja sauvegardes.
 
         #if Appel.objects.filter(date__date__contains=d.date(), heure__contains=d.time(), appelant__contains=apple, line_appelante__contains=fsx_e, appele__contains=applant, line_appele__contains=fsx_a).count()==1:
         #if Appel.objects.filter(date__date__contains=d.date()).filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:

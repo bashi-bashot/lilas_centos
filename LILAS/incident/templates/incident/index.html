@@ -28,37 +28,38 @@
         </header>
         <div>
             <div>
-                <form action="." method="post">
-                    <th> 
-                        {% csrf_token %}
-                        <ul>
-                            <table">
-                                <thead style="text-align: left"> <!-- En-tête du tableau -->
-                                    <tr>
-                                        <th>Début</th>
-                                        <th>Fin</th>
-                                    </tr>
-                                </thead>
-                                <tbody style="text-align: left">
-                                    <tr>
-                                        <td>Date {{ form.dateDebut}} </td>
-                                        <td>Date {{ form.dateFin }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Heure {{ form.heureDebut }}</td>
-                                        <td>Heure {{ form.heureFin }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            {% if form.heureDebut.errors %}
-                                            {{ form.heureDebut.errors }}
-                                            {% endif%} 
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </ul>
-                    </th>
+                <form action="." method="post">  
+                    {% csrf_token %}
+                    <ul>
+                        <table style="width:10%;">
+                            <thead style="text-align: center">
+                                <tr>
+                                    <th>Début</th>
+                                    <th>Fin</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align: right">
+                                <tr>
+                                    <td>Date {{ form.dateDebut}} </td>
+                                    <td>Date {{ form.dateFin }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Heure {{ form.heureDebut }}</td>
+                                    <td>Heure {{ form.heureFin }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        {% if form.heureDebut.errors %}
+                                        {{ form.heureDebut.errors }}
+                                        {% endif%} 
+                                    </td>
+                                    <td> 
+                                        <input type="submit" value="Submit"> 
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
                 </form> 
             </div>
         </div>

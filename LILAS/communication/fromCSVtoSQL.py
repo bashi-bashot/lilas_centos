@@ -140,9 +140,11 @@ def createAppel(t, listeLif):
         #On sait que l'appelle a été passé à : date_a_sauvegarder
         #On ne regarde donc que les appels de date_a_sauvegarder
 
-        if date_a_sauvegarder.Appel.all().filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()>0:
+        if date_a_sauvegarder.Appel.all().filter(heure__exact=d.time()).filter(appelant__exact=apple).filter(line_appelante__exact=fsx_e).filter(appele__exact=applant).filter(line_appele__exact=fsx_a).count()>0:
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:
+
+            #print("Heure :"+d.time()+" "+applant+" "+apple)
             dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
             
             #Traitemeent sur le champ "ETAT" du ticket : On ne regarde pas ce qui suit 'en'

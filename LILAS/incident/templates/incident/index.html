@@ -29,14 +29,36 @@
         <div>
             <div>
                 <form action="." method="post">
-                    {% csrf_token %}
-                    <ul>
-                        <li>Date initiale {{ form.dateDebut }}</li>
-                        <li>Heure initiale{{ form.heureDebut }}</li>
-                        <li>Date de fin {{ form.dateFin }}</li>
-                        <li>Heure de fin {{ form.heureFin }}</li>
-                        <li><input type="submit" value="Submit"></li>
-                    </ul>
+                    <th> 
+                        {% csrf_token %}
+                        <ul>
+                            <table style="margin:auto;">
+                                <thead style="text-align: center"> <!-- En-tête du tableau -->
+                                    <tr>
+                                        <th>Début</th>
+                                        <th>Fin</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align: right">
+                                    <tr>
+                                        <td>Date {{ form.dateDebut}} </td>
+                                        <td>Date {{ form.dateFin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Heure {{ form.heureDebut }}</td>
+                                        <td>Heure {{ form.heureFin }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {% if form.heureDebut.errors %}
+                                            {{ form.heureDebut.errors }}
+                                            {% endif%} 
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </ul>
+                    </th>
                 </form> 
             </div>
         </div>

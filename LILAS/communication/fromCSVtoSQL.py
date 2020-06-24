@@ -124,8 +124,8 @@ def createAppel(t, listeLif):
         #On crze la date de l'appel dans la table Date si elle n'existe pas
         date_a_sauvegarder = Date(date = d.date())
 
-        if Date.objects.filter(date__contains=d.date()).count() == 1 :
-            date_a_sauvegarder = Date.objects.filter(date__contains=d.date())[0]
+        if Date.objects.filter(date__exact=d.date()).count() == 1 :
+            date_a_sauvegarder = Date.objects.filter(date__exact=d.date())[0]
         else :
             
             date_a_sauvegarder.save()
@@ -145,7 +145,7 @@ def createAppel(t, listeLif):
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:
 
-            #print("Heure :"+d.time()+" "+applant+" "+apple)
+            print("Heure :"+d.time()+" "+applant+" "+apple)
             dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
             
             #Traitemeent sur le champ "ETAT" du ticket : On ne regarde pas ce qui suit 'en'

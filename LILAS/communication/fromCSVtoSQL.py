@@ -144,10 +144,12 @@ def createAppel(t, listeLif):
         #On sait que l'appelle a été passé à : date_a_sauvegarder
         #On ne regarde donc que les appels de date_a_sauvegarder
 
+        print("TEST DOUBLON")
         if date_a_sauvegarder.Appel.all().filter(heure__exact=d.time()).filter(appelant__exact=apple).filter(line_appelante__exact=fsx_e).filter(appele__exact=applant).filter(line_appele__exact=fsx_a).count()>0:
+            print("DOUBLON TROUVE")
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:
-
+            print("DOUBLON NON TROUVE")
             print("Heure :"+d.time()+" "+applant+" "+apple)
             dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
             

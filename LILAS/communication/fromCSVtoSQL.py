@@ -126,7 +126,7 @@ def createAppel(t, listeLif):
 
         if Date.objects.all().filter(date__exact=d.date()).count() == 1 :
             date_a_sauvegarder = Date.objects.all().filter(date__exact=d.date())[0]
-            print("DATE DEJA EXISTANTE")
+            
         else :
             date_a_sauvegarder.save()
             date_a_sauvegarder = Date.objects.all().filter(date__exact=d.date())[0]

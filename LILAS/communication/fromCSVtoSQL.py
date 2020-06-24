@@ -126,8 +126,11 @@ def createAppel(t, listeLif):
 
         if Date.objects.all().filter(date__exact=d.date()).count() == 1 :
             date_a_sauvegarder = Date.objects.all().filter(date__exact=d.date())[0]
+            print("DATE DEJA EXISTANTE")
         else :
             date_a_sauvegarder.save()
+            date_a_sauvegarder = Date.objects.all().filter(date__exact=d.date())[0]
+            print("NOUVELLE DATE ENREGISTREE")
             
             
 
@@ -141,7 +144,7 @@ def createAppel(t, listeLif):
         #On sait que l'appelle a été passé à : date_a_sauvegarder
         #On ne regarde donc que les appels de date_a_sauvegarder
 
-        if Date.objects.all().filter(date__exact=d.date())[0].Appel.all().filter(heure__exact=d.time()).filter(appelant__exact=apple).filter(line_appelante__exact=fsx_e).filter(appele__exact=applant).filter(line_appele__exact=fsx_a).count()>0:
+        if date_a_sauvegarder.Appel.all().filter(heure__exact=d.time()).filter(appelant__exact=apple).filter(line_appelante__exact=fsx_e).filter(appele__exact=applant).filter(line_appele__exact=fsx_a).count()>0:
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:
 

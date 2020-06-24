@@ -127,8 +127,8 @@ def createAppel(t, listeLif):
         if Date.objects.filter(date__exact=d.date()).count() == 1 :
             date_a_sauvegarder = Date.objects.filter(date__exact=d.date())[0]
         else :
-            
             date_a_sauvegarder.save()
+            date_a_sauvegarder = Date.objects.filter(date__exact=d.date())[0]
 
         #if Appel.objects.filter(date__date__contains=d.date(), heure__contains=d.time(), appelant__contains=apple, line_appelante__contains=fsx_e, appele__contains=applant, line_appele__contains=fsx_a).count()==1:
         #if Appel.objects.filter(date__date__contains=d.date()).filter(heure__contains=d.time()).filter(appelant__contains=apple).filter(line_appelante__contains=fsx_e).filter(appele__contains=applant).filter(line_appele__contains=fsx_a).count()==1:

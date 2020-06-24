@@ -150,7 +150,7 @@ def createAppel(t, listeLif):
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:
             print("DOUBLON NON TROUVE")
-            print("Heure :"+d.time()+" "+applant+" "+apple)
+            
             dur = dfin - d #dur n'est pas un objet datetime, mais un objet timedelta
             
             #Traitemeent sur le champ "ETAT" du ticket : On ne regarde pas ce qui suit 'en'

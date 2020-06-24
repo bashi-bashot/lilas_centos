@@ -123,8 +123,8 @@ def createAppel(t, listeLif):
 
         #On crze la date de l'appel dans la table Date si elle n'existe pas
         date_a_sauvegarder = Date(date = d.date())
-        print("DETAIL AVANT : "+date_a_sauvegarder)
-        
+        print("d.date() : "+d.date())
+
         if Date.objects.all().filter(date__exact=d.date()).count() == 1 :
             date_a_sauvegarder = Date.objects.all().filter(date__exact=d.date())[0]
         else :

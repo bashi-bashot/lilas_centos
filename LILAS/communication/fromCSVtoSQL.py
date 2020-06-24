@@ -140,7 +140,7 @@ def createAppel(t, listeLif):
         #On sait que l'appelle a été passé à : date_a_sauvegarder
         #On ne regarde donc que les appels de date_a_sauvegarder
 
-        print(date_a_sauvegarder.Appel.all().count())
+        print(""+date_a_sauvegarder.Appel.all().count())
         if date_a_sauvegarder.Appel.all().filter(heure__exact=d.time()).filter(appelant__exact=apple).filter(line_appelante__exact=fsx_e).filter(appele__exact=applant).filter(line_appele__exact=fsx_a).count()>0:
             print("Doublon :"+d.__str__()+" "+applant+" "+apple)
         else:

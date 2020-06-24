@@ -562,7 +562,7 @@ def index(request):
                 for o in range(5):
                     listeStat[0].append(0)
                                 
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     if appel.SUTP == True :                       
                         listeStat[0][1] = listeStat[0][1] + 1 #NbAppel
                         listeStat[0][2] = listeStat[0][2] = appel.duree #Durée cumulée
@@ -579,7 +579,7 @@ def index(request):
                 for o in range(5):
                     listeStat[0].append(0)
                                 
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     if appel.SDA == True :                       
                         listeStat[0][1] = listeStat[0][1] + 1 #NbAppel
                         listeStat[0][2] = listeStat[0][2] + appel.duree #Durée cumulée
@@ -597,7 +597,7 @@ def index(request):
                     listeStat[0].append(0)
                     
                 #APPELANT
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     if appel.appelant == appel.nom_appelant :
                         listeStat[0][1] = listeStat[0][1] + 1
                         listeStat[0][2] = listeStat[0][2] + appel.duree

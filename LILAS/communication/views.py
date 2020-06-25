@@ -703,9 +703,9 @@ def index(request):
 
             #render(request, 'incident/index.html') #provisoire
             
-    else : #Dans le cas où on a pas récupéré un POST 
+    #else : #Dans le cas où on a pas récupéré un POST 
        
-        context = {'AppelListe':listeDates, 'form':formulaireDates} #Je pense que cette ligne est inutile
+        #context = {'AppelListe':listeDates, 'form':formulaireDates} #Je pense que cette ligne est inutile
     
     return render(request, 'communication/index.html', context)
     

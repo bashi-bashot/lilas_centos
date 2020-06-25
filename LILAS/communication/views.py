@@ -260,7 +260,7 @@ def index(request):
             
                 listeSecteurs = [] #Contient tous les secteurs avec lesquels on va construire la suite du tuple précédent
                
-                for appel in GLOB_TAB_APPELS :
+                for appel in listeDates :
                     appelant = appel.nom_appelant
                     appele = appel.nom_appele
                     
@@ -654,7 +654,6 @@ def index(request):
             #print("*****************"+str(a))
 
             # GLOB_FORM_STATISTIQUES = formulaireStatistiques
-            GLOB_TAB_APPELS = listeDates
             
             # print("----------------------------")
             # print("Nombre d'appels après sauvegarde :")
@@ -706,7 +705,7 @@ def index(request):
             
     else : #Dans le cas où on a pas récupéré un POST 
        
-        context = {'AppelListe':GLOB_TAB_APPELS, 'form':formulaireDates} #Je pense que cette ligne est inutile
+        context = {'AppelListe':listeDates, 'form':formulaireDates} #Je pense que cette ligne est inutile
     
     return render(request, 'communication/index.html', context)
     

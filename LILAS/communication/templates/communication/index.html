@@ -83,8 +83,8 @@
                                 <th id="colonne_date" class="dateAppel">Date</th>
                                 <th id="colonne_liberation" class="liberationAppel">Libération</th>                    
                                 <th id="colonne_etat" class="etatAppel">Etat</th>
-                                <th id="colonne_fxEntrant" class="Fx_e_Appel">Fx entrant</th>
-                                <th id="colonne_fxSortant" class="Fx_a_Appel">Fx sortant</th>
+                                <th id="colonne_fxEntrant" class="Fx_e_Appel">Fx sortant</th>
+                                <th id="colonne_fxSortant" class="Fx_a_Appel">Fx entrant</th>
                                 <th id="colonne_ligneAppelante" class="ligne_appelante" >Ligne appelante</th>
                                 <th id="colonne_ligneAppelee" class="ligne_appele">Ligne appelee</th>
                             </tr>
@@ -118,15 +118,7 @@
                     <table id="tabStatF" >
                         <thead>
                             <tr>
-                                <th class="colonne1">
-                                    <form action="." method="post">
-                                        
-                                        {% csrf_token %}
-                                        {{ statForm.selectionTypeSpinner}}
-                                        
-                                        <input id="boutonSubmit" type="submit" value="Submit">
-                                    </form>
-                                </th>
+                                <th class="colonne1"></th>
                                 <th id ="boutonNbAppel" class="colonne2">Nombre d'appel</th>
                                 <th id="boutonDureeCumulee"class="colonne3">Durée Cumulée (s)</th>
                                 <th id="boutonNbEchec" class="colonne4">Nombre d'échec</th>

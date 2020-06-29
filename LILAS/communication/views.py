@@ -26,7 +26,7 @@ GLOB_TAB_APPELS = []
 GLOB_DATE_INIT = datetime.now()
 GLOB_DATE_END = datetime.now()
 
-GLOB_TAB_SECT = [('1',"Tous secteurs"), ('2',"A"),('3',"B"),('4',"C"),('5',"D"),] #Variable qui sauvegarde les choix du spinner Secteur dans formulaireDate
+GLOB_TAB_SECT = [(1,"Tous secteurs"), (2,"A"),(3,"B"),(4,"C"),(5,"D"),] #Variable qui sauvegarde les choix du spinner Secteur dans formulaireDate
 GLOB_TAB_CORREXTE = [(1,"Tous les correspondants")] #Variable qui sauvegarde les choix du spinner correspondants dans formulaireDate
 
 

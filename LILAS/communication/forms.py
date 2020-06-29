@@ -17,6 +17,12 @@ listeTypeStats = [
     (7, ("Numéro Inconnu"))
 ]
 
+choicesSecteurs = (
+    ('test', 'bonjour'),
+    ('test2', 'bonjour2'),
+    ('test3', 'bonjour3')
+)
+
        
 class NameForm(forms.Form):
     dateDebut = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
@@ -26,7 +32,7 @@ class NameForm(forms.Form):
 
     positionSpinner = forms.TypedChoiceField(choices = ())
 
-    correspondantSpinner = forms.ChoiceField(label='Position : ', choices = ())
+    correspondantSpinner = forms.ChoiceField(label='Position : ', choices = choicesSecteurs)
     selectionTypeSpinner = forms.ChoiceField(label='',choices = listeTypeStats)
     
     def __init__(self, *args, **kwargs): #Fonction appelée a chaque appel du formulaire dans le code python
@@ -36,10 +42,10 @@ class NameForm(forms.Form):
         choices=[(1,("Tous secteurs"))] #On initialise une variable par défaut pour le spinenr de secteur
         choices_corr = [(1, ("Tous les correspondants"))] #On initialise une variable par défaut pour le spinneur de correspondant
 
-        try:
-            choices = kwargs.pop('choice_list_sect') #Si dans les kwargs (arguments donnés à l'appel de la classe) on a un élément de nom 'choice_list' alors on remplace la variable choices
-        except KeyError:
-            print("Liste de secteurs non initialisée [DateForm]")
+        #try:
+        #    choices = kwargs.pop('choice_list_sect') #Si dans les kwargs (arguments donnés à l'appel de la classe) on a un élément de nom 'choice_list' alors on remplace la variable choices
+        #except KeyError:
+        #    print("Liste de secteurs non initialisée [DateForm]")
         
         try:
             choices_corr = kwargs.pop('choice_list_corr') #Si dans les kwargs (arguments donnés à l'appel de la classe) on a un élément de nom 'choice_list' alors on remplace la variable choices
@@ -49,7 +55,7 @@ class NameForm(forms.Form):
         super(NameForm, self).__init__(*args, **kwargs)
         
         self.fields['correspondantSpinner'] = forms.ChoiceField(choices = choices_corr)
-        self.fields['positionSpinner'] = forms.ChoiceField(choices = choices)
+        #self.fields['positionSpinner'] = forms.ChoiceField(choices = choices)
 
     def clean_heureDebut(self):
         strHeure = self.cleaned_data['heureDebut']

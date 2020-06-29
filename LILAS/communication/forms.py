@@ -21,8 +21,8 @@ listeTypeStats = [
 bddSecteur = NumSecteur.objects.all()
 bddExterieur = NumExterieur.objects.all()
 
-choicesSecteurs = [(i, bddSecteur[i].nom) for i in range(bddSecteur.count())]
-choiceExterieur = [(i, bddExterieur[i].nom) for i in range(bddExterieur.count())]
+choicesSecteurs = [(1,"Tous secteurs"), (i+1, bddSecteur[i].nom) for i in range(bddSecteur.count())]
+choiceExterieur = [(1,"Tous les correspondants"), (i+1, bddExterieur[i].nom) for i in range(bddExterieur.count())]
 
        
 class NameForm(forms.Form):

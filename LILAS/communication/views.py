@@ -52,7 +52,8 @@ def index(request):
    
     
     listeDeTicket = []
-    formulaireDates = NameForm(request.POST, choice_list_sect = GLOB_TAB_SECT, choice_list_corr = GLOB_TAB_CORREXTE)
+    #formulaireDates = NameForm(request.POST, choice_list_sect = GLOB_TAB_SECT, choice_list_corr = GLOB_TAB_CORREXTE)
+    formulaireDates = NameForm(request.POST)
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------
     

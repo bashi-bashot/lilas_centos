@@ -230,7 +230,7 @@ def index(request):
                     #AFFINAGE DE LA LISTE D'APPELS EN FONCTION DU -- SECTEUR -- ENREGISTRE
 
             if choixSpinner[1] != "Tous secteurs" : #Dans le cas contraire, on ne touche à rien 
-            
+                print("SECTEUR CHOISI :"+choixSpinner[1])
                 listeDates = listeDates.filter(Q(nom_appelant=choixSpinner[1]) | Q(nom_appele=choixSpinner[1])) #On affine la liste d'appels
                 secteurSelectionne = 1
             

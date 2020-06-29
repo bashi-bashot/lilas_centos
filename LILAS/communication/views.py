@@ -138,7 +138,7 @@ def index(request):
                      #RECUPERATION DU CHAMP DU MENU DEROULANT DE SELECTION DES SECTEURS
 
             strSecteur = formulaireDates.cleaned_data['positionSpinner']   
-            choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur)-1]
+            choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur)]
             
             #Il faut maintenant affiner la liste listeDates pour n'afficher que les appels faisant intervenit le secteur choisi
             #print(listeDates.count())
@@ -149,7 +149,7 @@ def index(request):
                      #RECUPERATION DU CHAMP DU MENU DEROULANT DE SELECTION DES CORRESONDANTS ET AFFINAGE DE LA LISTE D'APPELS
                     
             strCorr = formulaireDates.cleaned_data['correspondantSpinner']
-            choixSpinner_corr = formulaireDates.fields['correspondantSpinner'].choices[int(strCorr)-1]
+            choixSpinner_corr = formulaireDates.fields['correspondantSpinner'].choices[int(strCorr)]
                    
             #------------------------------------------------------------------------------------------
                      #POPULATION DU MENU DEROULANT DANS LEQUEL ON CHOISIT LE SECTEUR

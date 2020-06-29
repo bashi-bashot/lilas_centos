@@ -30,7 +30,7 @@ class NameForm(forms.Form):
     dateFin = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
     heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
 
-    positionSpinner = forms.CharField(choices = choicesSecteurs)
+    positionSpinner = forms.CharField(widget=forms.Select(choices = choicesSecteurs))
 
     correspondantSpinner = forms.ChoiceField(label='Position : ', choices = ())
     selectionTypeSpinner = forms.ChoiceField(label='',choices = listeTypeStats)

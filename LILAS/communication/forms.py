@@ -23,7 +23,9 @@ class NameForm(forms.Form):
     heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
     dateFin = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
     heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
-    positionSpinner = forms.TypedChoiceField(choices = ())
+
+    positionSpinner = forms.TypedChoiceField(widget=forms.TextInput(attrs={'size':10}), choices = ())
+
     correspondantSpinner = forms.ChoiceField(label='Position : ', choices = ())
     selectionTypeSpinner = forms.ChoiceField(label='',choices = listeTypeStats)
     

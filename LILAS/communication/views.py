@@ -249,7 +249,7 @@ def index(request):
             
             listeStat = []
             typeElement = formulaireDates.cleaned_data['selectionTypeSpinner']
-            formulaireDates = NameForm(request.POST, choice_list_sect = listeSecteursSpinner, choice_list_corr = listeCorrespondantSpinner)
+            formulaireDates = NameForm(request.POST)
             
             if typeElement == '1' : #INDIFFERENT 
                 print("ENTREE DANS LE IF ELEMENT = 1")

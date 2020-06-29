@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.admin import widgets
+from communication.models import *
 
 
 #Liste à modifier dynamiquement
@@ -17,11 +18,12 @@ listeTypeStats = [
     (7, ("Numéro Inconnu"))
 ]
 
-choicesSecteurs = (
-    ('test', 'bonjour'),
-    ('test2', 'bonjour2'),
-    ('test3', 'bonjour3')
-)
+bddSecteur = NumSecteur.objects.all()
+
+choicesSecteurs = []
+
+for i in range(bddSecteur.count()):
+    choicesSecteurs.append((i, NumExterieur.nom))
 
        
 class NameForm(forms.Form):

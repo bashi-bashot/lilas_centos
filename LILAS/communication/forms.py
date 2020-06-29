@@ -23,8 +23,8 @@ bddExterieur = NumExterieur.objects.all()
 
 choicesSecteurs = [(1,("Tous secteurs"))]
 choiceExterieur = [(1,("Tous les correspondants"))]
-choicesSecteurs2 = [(i+1, (bddSecteur[i].nom)) for i in range(bddSecteur.count())]
-choiceExterieur2= [(i+1, (bddExterieur[i].nom)) for i in range(bddExterieur.count())]
+choicesSecteurs2 = [(i+2, (bddSecteur[i].nom)) for i in range(bddSecteur.count())]
+choiceExterieur2= [(i+2, (bddExterieur[i].nom)) for i in range(bddExterieur.count())]
 
 choicesSecteurs = choicesSecteurs + choicesSecteurs2
 choiceExterieur = choiceExterieur + choiceExterieur2

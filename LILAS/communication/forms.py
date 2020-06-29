@@ -23,7 +23,7 @@ bddSecteur = NumSecteur.objects.all()
 choicesSecteurs = []
 
 for i in range(bddSecteur.count()):
-    choicesSecteurs.append((i, NumExterieur[i].nom))
+    choicesSecteurs.append((i, bddSecteur[i].nom))
 
        
 class NameForm(forms.Form):

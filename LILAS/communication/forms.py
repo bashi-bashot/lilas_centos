@@ -19,11 +19,10 @@ listeTypeStats = [
 ]
 
 bddSecteur = NumSecteur.objects.all()
+bddExterieur = NumExterieur.objects.all()
 
-choicesSecteurs = []
-
-for i in range(bddSecteur.count()):
-    choicesSecteurs.append((i, bddSecteur[i].nom))
+choicesSecteurs = [(i, bddSecteur[i].nom) for i in range(bddSecteur.count())]
+choiceExterieur = [(i, bddExterieur[i].nom) for i in range(bddExterieur.count())]
 
        
 class NameForm(forms.Form):
@@ -33,8 +32,8 @@ class NameForm(forms.Form):
     heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
 
     positionSpinner = forms.CharField(widget=forms.Select(choices = choicesSecteurs))
+    correspondantSpinner = forms.CharField(widget=forms.Select(choices = choiceExterieur))
 
-    correspondantSpinner = forms.ChoiceField(label='Position : ', choices = ())
     selectionTypeSpinner = forms.ChoiceField(label='',choices = listeTypeStats)
     
     #def __init__(self, *args, **kwargs): #Fonction appelée a chaque appel du formulaire dans le code python

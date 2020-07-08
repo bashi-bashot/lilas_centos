@@ -498,18 +498,19 @@ def index(request):
                     listeAppelsParFaisceaux[i] = []
                     
                 for appel in listeDates :
-                    #On memorise les indice de listeFaisceaux correspondant aux faisceaux entrants et sortants de l'appel
-                    ind_entrant = -1
-                    ind_sortant = -1
-                    if appel.fx_entrant in listeFaisceaux :
-                        ind_entrant = listeFaisceaux.index(appel.fx_entrant)
-                    if appel.fx_sortant in listeFaisceaux :
-                        ind_sortant = listeFaisceaux.index(appel.fx_sortant)
-                    #On ajoute maintenant l'appel à listeAppelsParFaisceaux au bon indice
-                    if(ind_entrant != -1) :
-                        listeAppelsParFaisceaux[ind_entrant].append(appel)
-                    if(ind_sortant != -1) :
-                        listeAppelsParFaisceaux[ind_sortant].append(appel)
+                    if appel.duree != 0 : #On enlève tous les appels de 0s pour l'occupation faisceaux
+                        #On memorise les indice de listeFaisceaux correspondant aux faisceaux entrants et sortants de l'appel
+                        ind_entrant = -1
+                        ind_sortant = -1
+                        if appel.fx_entrant in listeFaisceaux :
+                            ind_entrant = listeFaisceaux.index(appel.fx_entrant)
+                        if appel.fx_sortant in listeFaisceaux :
+                            ind_sortant = listeFaisceaux.index(appel.fx_sortant)
+                        #On ajoute maintenant l'appel à listeAppelsParFaisceaux au bon indice
+                        if(ind_entrant != -1) :
+                            listeAppelsParFaisceaux[ind_entrant].append(appel)
+                        if(ind_sortant != -1) :
+                            listeAppelsParFaisceaux[ind_sortant].append(appel)
                         
                 #------------------------------
                 

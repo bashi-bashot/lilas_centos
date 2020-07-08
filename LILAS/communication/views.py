@@ -138,7 +138,7 @@ def index(request):
                      #RECUPERATION DU CHAMP DU MENU DEROULANT DE SELECTION DES SECTEURS
 
             strSecteur = formulaireDates.cleaned_data['positionSpinner']   
-            choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur)-1]
+            choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur[0])-1]
 
             print("strSecteur : "+strSecteur)
             print("choixSpinner : "+choixSpinner[1])

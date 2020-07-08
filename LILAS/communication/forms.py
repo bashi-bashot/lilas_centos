@@ -32,7 +32,7 @@ choiceExterieur = choiceExterieur + choiceExterieur2
        
 class NameForm(forms.Form):
     dateDebut = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
-    heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss', 'initial':'00:00:00'}))
+    heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}), initial = "00:00:00")
     dateFin = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
     heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
 

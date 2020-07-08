@@ -519,15 +519,14 @@ def index(request):
                 for i in range(len(listeAppelsParFaisceaux)):
                     tabJalons = [] #Une table pour un faisceau
                     for appel in listeAppelsParFaisceaux[i] :
-                        if(appel.duree =! 0) :
-                            dateDebAppel = appel.date
-                            heureDebAppel = appel.heure
-                            datetimeDebAppel = datetime(int(str(dateDebAppel)[0:4]),int(str(dateDebAppel)[5:7]),int(str(dateDebAppel)[8:10]),heureDebAppel.hour,heureDebAppel.minute, heureDebAppel.second)
-                            datetimeFinAppel = datetimeDebAppel + timedelta(seconds=appel.duree)
-                            ouverture=(datetimeDebAppel, 0)
-                            fermeture = (datetimeFinAppel, 1)
-                            tabJalons.append(ouverture)
-                            tabJalons.append(fermeture)
+                        dateDebAppel = appel.date
+                        heureDebAppel = appel.heure
+                        datetimeDebAppel = datetime(int(str(dateDebAppel)[0:4]),int(str(dateDebAppel)[5:7]),int(str(dateDebAppel)[8:10]),heureDebAppel.hour,heureDebAppel.minute, heureDebAppel.second)
+                        datetimeFinAppel = datetimeDebAppel + timedelta(seconds=appel.duree)
+                        ouverture=(datetimeDebAppel, 0)
+                        fermeture = (datetimeFinAppel, 1)
+                        tabJalons.append(ouverture)
+                        tabJalons.append(fermeture)
                     
                     #print("Tri des jalons du faisceau en cours")
                     tabJalons.sort()

@@ -34,7 +34,7 @@ class NameForm(forms.Form):
     dateDebut = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
     heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'value':'00:00:00'}), initial = "00:00:00")
     dateFin = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))
-    heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'placeholder': 'hh:mm:ss'}))
+    heureFin  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'value':'23:59:59'}))
 
     positionSpinner = forms.ChoiceField(label='', choices = choicesSecteurs)
     correspondantSpinner = forms.ChoiceField(label='', choices = choiceExterieur)

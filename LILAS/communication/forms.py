@@ -27,7 +27,7 @@ choicesSecteurs2 = [(i+2, (bddSecteur[i].nom)) for i in range(bddSecteur.count()
 choiceExterieur2= [(i+2, (bddExterieur[i].nom)) for i in range(bddExterieur.count())]
 
 choicesSecteurs = choicesSecteurs + choicesSecteurs2
-choiceExterieur = choiceExterieur + choiceExterieur2
+choiceExterieur = choiceExterieur + choiceExterieur2                                                                                                                                                                                                                       
 
        
 class NameForm(forms.Form):

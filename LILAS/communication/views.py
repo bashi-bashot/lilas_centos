@@ -140,7 +140,7 @@ def index(request):
             strSecteur = formulaireDates.cleaned_data['positionSpinner']   
             choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur[0])-1]
 
-            print("strSecteur : "+strSecteur)
+            print("strSecteur : "+strSecteur[0])
             print("choixSpinner : "+choixSpinner[1])
             
             #Il faut maintenant affiner la liste listeDates pour n'afficher que les appels faisant intervenit le secteur choisi

@@ -138,7 +138,11 @@ def index(request):
                      #RECUPERATION DU CHAMP DU MENU DEROULANT DE SELECTION DES SECTEURS
 
             strSecteur = formulaireDates.cleaned_data['positionSpinner']   
-            choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur[0])-1]
+            choixSpinner = []
+            for i in range(len(strSecteur)):
+                choixSpinner.append(formulaireDates.fields['positionSpinner'].choices[int(strSecteur[i])-1])
+
+            #choixSpinner = formulaireDates.fields['positionSpinner'].choices[int(strSecteur[0])-1]
 
             print("strSecteur : "+strSecteur[0])
             print("choixSpinner : "+choixSpinner[1])
@@ -232,10 +236,26 @@ def index(request):
              #------------------------------------------------------------------------------------------
                     #AFFINAGE DE LA LISTE D'APPELS EN FONCTION DU -- SECTEUR -- ENREGISTRE
 
-            if choixSpinner[1] != "Tous secteurs" : #Dans le cas contraire, on ne touche à rien 
-                print("SECTEUR CHOISI :"+choixSpinner[1])
-                listeDates = listeDates.filter(Q(nom_appelant=choixSpinner[1]) | Q(nom_appele=choixSpinner[1])) #On affine la liste d'appels
-                secteurSelectionne = 1
+            #On cherche si dans la liste des secteurs choisis, on trouve "Tous secteurs" :
+            toutSecteur = False
+            for i in range(len(choixSpinner)):
+                if(choixSpinner[i][1] == "Tous secteurs") :
+                    toutSecteur = True
+
+
+
+            if not toutSecteur : #Si on a pas "Tous secteurs dans ce qu'a choisi l'utilisateur, on doit affiner, sinon, on en touche a rien"
+                print("AUTRE SECTEUR CHOISI")
+                listeDatesProvisoire = listeDates.filter((Q(nom_appelant=choixSpinner[0][1]) | Q(nom_appele=choixSpinner[0][1])))
+                if(len(choixSpinner > 1)):    
+                    for i in range(1, len(choixSpinner)):
+                        #print("SECTEUR CHOISI :"+choixSpinner[i])
+                        listeDatesProvisoire = listeDatesProvisoire | listeDates.filter((Q(nom_appelant=choixSpinner[i][1]) | Q(nom_appele=choixSpinner[i][1]))) #On affine la liste d'appels
+                        #secteurSelectionne = 1
+            else :
+                print("TOUS SECTEURS")
+
+            listeDates = listeDatesProvisoire
             
              #------------------------------------------------------------------------------------------
                     #AFFINAGE DE LA LISTE D'APPELS EN FONCTION DU -- CORRESPONDANT -- ENREGISTRE

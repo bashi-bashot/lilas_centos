@@ -247,7 +247,7 @@ def index(request):
             if not toutSecteur : #Si on a pas "Tous secteurs dans ce qu'a choisi l'utilisateur, on doit affiner, sinon, on en touche a rien"
                 print("AUTRE SECTEUR CHOISI")
                 listeDatesProvisoire = listeDates.filter((Q(nom_appelant=choixSpinner[0][1]) | Q(nom_appele=choixSpinner[0][1])))
-                if(len(choixSpinner > 1)):    
+                if(len(choixSpinner) > 1)):    
                     for i in range(1, len(choixSpinner)):
                         #print("SECTEUR CHOISI :"+choixSpinner[i])
                         listeDatesProvisoire = listeDatesProvisoire | listeDates.filter((Q(nom_appelant=choixSpinner[i][1]) | Q(nom_appele=choixSpinner[i][1]))) #On affine la liste d'appels

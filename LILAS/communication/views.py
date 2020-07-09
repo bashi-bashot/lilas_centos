@@ -252,10 +252,11 @@ def index(request):
                         #print("SECTEUR CHOISI :"+choixSpinner[i])
                         listeDatesProvisoire = listeDatesProvisoire | listeDates.filter((Q(nom_appelant=choixSpinner[i][1]) | Q(nom_appele=choixSpinner[i][1]))) #On affine la liste d'appels
                         #secteurSelectionne = 1
+                listeDates = listeDatesProvisoire
             else :
                 print("TOUS SECTEURS")
 
-            listeDates = listeDatesProvisoire
+            
             
              #------------------------------------------------------------------------------------------
                     #AFFINAGE DE LA LISTE D'APPELS EN FONCTION DU -- CORRESPONDANT -- ENREGISTRE

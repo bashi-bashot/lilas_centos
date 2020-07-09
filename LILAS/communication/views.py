@@ -156,7 +156,9 @@ def index(request):
                      #RECUPERATION DU CHAMP DU MENU DEROULANT DE SELECTION DES CORRESONDANTS ET AFFINAGE DE LA LISTE D'APPELS
                     
             strCorr = formulaireDates.cleaned_data['correspondantSpinner']
-            choixSpinner_corr = formulaireDates.fields['correspondantSpinner'].choices[int(strCorr)-1]
+            choixSpinner_corr = [] #formulaireDates.fields['correspondantSpinner'].choices[int(strCorr)-1]
+            for i in range(len(strCorr)):
+                choixSpinner_corr.append(formulaireDates.fields['correspondantSpinner'].choices[int(strCorr[i])-1])
                    
             #------------------------------------------------------------------------------------------
                      #POPULATION DU MENU DEROULANT DANS LEQUEL ON CHOISIT LE SECTEUR

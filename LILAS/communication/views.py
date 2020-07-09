@@ -260,10 +260,19 @@ def index(request):
             
              #------------------------------------------------------------------------------------------
                     #AFFINAGE DE LA LISTE D'APPELS EN FONCTION DU -- CORRESPONDANT -- ENREGISTRE
+            toutCorres = False
+            for i in range(len(choixSpinner_corr)):
+                if(choixSpinner_corr[i][1] == "Tous les correspondants") :
+                    toutCorres = True
 
-            if choixSpinner_corr[1] != "Tous les correspondants" : #Dans le cas contraire, on ne touche à rien 
-
-                listeDates = listeDates.filter(Q(nom_appelant=choixSpinner_corr[1]) | Q(nom_appele=choixSpinner_corr[1]))
+            if not toutCorres :
+                print("AUTRE CORRESPONDANT CHOISI")
+                listeDatesProvisoire = listeDates.filter(Q(nom_appelant=choixSpinner_corr[0][1]) | Q(nom_appele=choixSpinner_corr[0][1]))
+                if(len(choixSpinner_corr)>1):
+                    for i in range(1, len(choixSpinner_corr)):
+                        listeDatesProvisoire = listeDatesProvisoire | listeDates.filter((Q(nom_appelant=choixSpinner_corr[i][1]) | Q(nom_appele=choixSpinner_corr[i][1]))) #On affine la liste d'appels
+                        
+                listeDates = listeDatesProvisoire
 
             #------------------------------------------------------------------------------------------
                     #CREATION DU TABLEAU DE STATISTIQUES

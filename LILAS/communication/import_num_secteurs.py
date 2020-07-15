@@ -13,10 +13,11 @@ def chargeFichier():
     
 def chercheATC(t):
     temoin="SECT"
+    temoin2="GRP"
     indexOfSECT=[]
     for i in range(len(t)):
         for j in range(len(t[i])-4):
-            if(t[i][j:j+4] == temoin):
+            if((t[i][j:j+4] == temoin)|(t[i][j:j+3] == temoin2)):
                 indexOfSECT.append(i)
                 
     return indexOfSECT
@@ -32,8 +33,9 @@ for i in range(len(tabIndex)):
     id = id_floating[0:len(id_floating)-3] #virgule et chiffres apres la virgule enleves
     
     if NumSecteur.objects.filter(numero__contains=str(t[tabIndex[i]][32])).filter(nom__contains=t[tabIndex[i]][5]).count()==0:
-        corr = NumSecteur(id_elts =id , id_lilas = str(i), numero = str(t[tabIndex[i]][32]), nom = t[tabIndex[i]][5])
-        corr.save()
+        if(t[tabIndex[i]][32] != "") :
+            corr = NumSecteur(id_elts =id , id_lilas = str(i), numero = str(t[tabIndex[i]][32]), nom = t[tabIndex[i]][5])
+            corr.save()
     else:
         print("Doublons numero secteur")
     

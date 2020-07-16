@@ -24,12 +24,13 @@ bddExterieur = NumExterieur.objects.all()
 choicesSecteurs = [(1,("Tous secteurs"))]
 choiceExterieur = [(1,("Tous les correspondants"))]
 choicesSecteurs2 = [(i+2, (bddSecteur[i].nom)) for i in range(bddSecteur.count())]
+choicesSecteurs2.sort(key=lambda x:x[1])
 choiceExterieur2= [(i+2, (bddExterieur[i].nom)) for i in range(bddExterieur.count())]
 
 choicesSecteurs = choicesSecteurs + choicesSecteurs2
 choiceExterieur = choiceExterieur + choiceExterieur2      
 
-choicesSecteurs.sort(key=lambda x:x[1])
+
 
        
 class NameForm(forms.Form):

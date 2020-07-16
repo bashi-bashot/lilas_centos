@@ -44,10 +44,10 @@ class NameForm(forms.Form):
     day = ""
     month = ""
     if(len(str(dateInitiale.date.day)) == 1):
-        day = "+"+str(dateInitiale.date.day)
+        day = "0"+str(dateInitiale.date.day)
 
     if(len(str(dateInitiale.date.month)) == 1):
-        month = "+"+str(dateInitiale.date.month)
+        month = "0"+str(dateInitiale.date.month)
 
 
     strDate = ""+day+"/"+month+"/"+str(dateInitiale.date.year)

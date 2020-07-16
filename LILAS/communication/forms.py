@@ -29,7 +29,7 @@ choiceExterieur2= [(i+2, (bddExterieur[i].nom)) for i in range(bddExterieur.coun
 choicesSecteurs = choicesSecteurs + choicesSecteurs2
 choiceExterieur = choiceExterieur + choiceExterieur2      
 
-choiceExterieur.sort(key=lambda x:x[1])
+choicesSecteurs.sort(key=lambda x:x[1])
 
        
 class NameForm(forms.Form):

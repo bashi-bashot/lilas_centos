@@ -3,7 +3,7 @@ from communication.models import LIF, NumExterieur
 from django.conf import settings
 
 def chargeFichier():
-    fic = open(settings.MEDIA_ROOT+"/ELTS.csv", 'r')
+    fic = open(settings.MEDIA_ROOT+"/ELTS.csv", newline='', encoding='latin1')
     tab = fic.readlines()
     fic.close()
     return tab

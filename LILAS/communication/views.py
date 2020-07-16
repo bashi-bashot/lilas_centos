@@ -574,7 +574,7 @@ def index(request):
                             if(simult > simultMax): #On reset les variables
                                 simultMax = simult
                                 compteur_max = 1
-                            if(simult == simultMax):
+                            else if(simult == simultMax):
                                 compteur_max = compteur_max + 1
                         elif(tabJalons[j][1] == 1): #Fin d'appel
                             if(simult == simultMax) :

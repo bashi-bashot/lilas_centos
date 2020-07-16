@@ -13,7 +13,7 @@ import time
 
 def main():
     #On ouvre le fichier contenant les tickets
-    fic = open(settings.MEDIA_ROOT+"/tickets_comm.csv", 'r', encoding='latin1')
+    fic = open(settings.MEDIA_ROOT+"/tickets_comm.csv", 'r', encoding='latin-1')
     t = fic.readlines() #on stock dans t toutes les lignes du fichier de tickets --> Chaque ligne EST un ticket
     fic.close() #On ferme le flux
     #print(t[0])

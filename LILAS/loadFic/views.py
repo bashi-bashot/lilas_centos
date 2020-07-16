@@ -1,5 +1,4 @@
-#-*- coding: utf-8 -*-
-
+#-*- coding: latin-1 -*-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import *
@@ -19,31 +18,65 @@ from incident.models import Incident
 # INDISPENSABLE pour l'execution de communication
 from communication.models import *
 
-# Exception Erreur du Format pour le fichier Upload
+# Exception Erreur du Format/Type pour le fichier Upload
 from .exception import *
 
+#Variable globale
+global context
+context = {}
 
 def index(request):
     
+    print('++++++++++++++++++++++form+++++++++++++++++++++')
+    
+    global context
+    context['fileEltsError'] = False
+    context['fileSystError'] = False
+    context['fileOpeError'] = False
+    context['fileComError'] = False
+    context['fileIncError'] = False
+
     form = UploadFileForm(request.POST, request.FILES)
-    
-    context = {'form':form}
-    context['fileOpeError'] = False  
-    
+    context['form'] = form
+
     if request.method == 'POST':
         print('post ok')
         if form.is_valid():
             print('\n\n\n****************')
             print(request.FILES)
             print('****************\n\n\n')
-            
+
             if 'fileConf' in request.FILES:
-                handle_uploaded_file_conf(request.FILES['fileConf'])
-                context['fileConf'] = request.FILES['fileConf'].name
+        
+                try:
+                    test_format(request.FILES['fileConf'])
+                except FormatError as e:
+                    print('Pb Format :', e.format)
+                    context['fileEltsError'] = e.format
+                    print(context['fileEltsError'])
+
+                else:
+                    print('\n\n\n****************')
+                    print('test format valid')
+                    print('****************\n\n\n')
+                    handle_uploaded_file_conf(request.FILES['fileConf'])
+                    context['fileConf'] = request.FILES['fileConf'].name
                 
             if 'fileSyst' in request.FILES:
-                handle_uploaded_file_syst(request.FILES['fileSyst'])
-                context['fileSyst'] = request.FILES['fileSyst'].name
+
+                try:
+                    test_format(request.FILES['fileSyst'])
+                except FormatError as e:
+                    print('Pb Format :', e.format)
+                    context['fileSystError'] = e.format
+                    print(context['fileSystError'])
+
+                else:
+                    print('\n\n\n****************')
+                    print('test format valid')
+                    print('****************\n\n\n')
+                    handle_uploaded_file_syst(request.FILES['fileSyst'])
+                    context['fileSyst'] = request.FILES['fileSyst'].name
             
             if 'fileOpe' in request.FILES:
 
@@ -56,83 +89,185 @@ def index(request):
 
                 else:
                     print('\n\n\n****************')
-                    print('test valid')
+                    print('test format valid')
                     print('****************\n\n\n')
                     handle_uploaded_file_ope(request.FILES['fileOpe'])
                     context['fileOpe'] = request.FILES['fileOpe']
 
 
             if 'fileCom' in request.FILES:
-                handle_uploaded_file_com(request.FILES['fileCom'])
-                context['fileCom'] = request.FILES['fileCom'].name
+                try:
+                    test_format(request.FILES['fileCom'])
+                except FormatError as e:
+                    print('Pb Format :', e.format)
+                    context['fileComError'] = e.format
+                    print(context['fileComError'])
+
+                else:
+                    print('\n\n\n****************')
+                    print('test format valid')
+                    print('****************\n\n\n')
+                    handle_uploaded_file_com(request.FILES['fileCom'])
+                    context['fileCom'] = request.FILES['fileCom'].name
                 
             if 'fileInc' in request.FILES:
-                handle_uploaded_file_inc(request.FILES['fileInc'])
-                context['fileInc'] = request.FILES['fileInc'].name
+                try:
+                    test_format(request.FILES['fileInc'])
+                except FormatError as e:
+                    print('Pb Format :', e.format)
+                    context['fileIncError'] = e.format
+                    print(context['fileIncError'])
 
-            if len(context)>2:
-                print('\n\n\n****************')
-                print(len(context))
-                print('****************\n\n\n')    
+                else:
+                    print('\n\n\n****************')
+                    print('test format valid')
+                    print('****************\n\n\n')
+                    handle_uploaded_file_inc(request.FILES['fileInc'])
+                    context['fileInc'] = request.FILES['fileInc'].name
+
+            # if len(context)>6:
+            #     print('\n\n\n****************')
+            #     print(len(context))
+            #     print('****************\n\n\n')
+            #     print(context)
+            if context['fileOpeError'] or context['fileComError'] or context['fileIncError'] or context['fileEltsError'] or context['fileSystError'] != False:
+                return render(request, 'loadFic/index.html', context)
+            else:
                 return render(request, 'loadFic/upload_is_valid.html', context)
         
         else:
             print('no form valid')
         
     else:
-        print('no post') 
+        print('no post')
 
-    return render(request, 'loadFic/index.html', context)
+    return render(request, 'loadFic/index.html', {'form': form})
+
+
 
 def handle_uploaded_file_conf(f):
-    with open(settings.MEDIA_ROOT+'/ELTS.csv', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-    LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
-    PPATH = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_exterieurs.py")
-    PPATH_2 = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_secteurs.py")
-    exec(open(PPATH, encoding='utf-8').read())
-    #exec(open(LILAS_DIR+'/communication/import_num_secteurs.py').read())
-    exec(open(PPATH_2).read())
+    global context
+
+    try:
+        test_type(f, 'elements_systeme')
+    except FileError as e:
+        print('Pb Type :', e.error)
+        context['fileEltsError'] = e.error
+        print(context['fileEltsError'])
+
+    else:
+        print('\n\n\n****************')
+        print('test type valid')
+        print('****************\n\n\n') 
+        with open(settings.MEDIA_ROOT+'/ELTS.csv', 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
+        PPATH = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_exterieurs.py")
+        PPATH_2 = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_secteurs.py")
+        exec(open(PPATH, encoding='latin-1').read())
+        #exec(open(LILAS_DIR+'/communication/import_num_secteurs.py').read())
+        exec(open(PPATH_2, encoding='latin-1').read())
 
 def handle_uploaded_file_syst(f):
-    destination = open(settings.MEDIA_ROOT+'/CONF_SYSTEM.csv', 'wb+')
-    t = f.readlines()
-    for i in range(len(t)):
-        destination.write(t[i])
-    destination.close()
-    LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
-    PATH_LOADFX = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "loadFX.py")
-    PATH_NUM_EXT = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_exterieurs_lif.py")
-    exec(open(PATH_LOADFX).read())
-    exec(open(PATH_NUM_EXT).read())
+    global context
+
+    try:
+        test_type(f, 'conf_systeme')
+    except FileError as e:
+        print('Pb Type :', e.error)
+        context['fileSystError'] = e.error
+        print(context['fileSystError'])
+
+    else:
+        print('\n\n\n****************')
+        print('test type valid')
+        print('****************\n\n\n')
+        with open(settings.MEDIA_ROOT+'/CONF_SYSTEM.csv', 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
+        PATH_LOADFX = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "loadFX.py")
+        PATH_NUM_EXT = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "import_num_exterieurs_lif.py")
+        exec(open(PATH_LOADFX, encoding='latin-1').read())
+        exec(open(PATH_NUM_EXT, encoding='latin-1').read())
     
+
 def handle_uploaded_file_ope(f):
-    with open(settings.MEDIA_ROOT+'/act_oper.csv', 'wb+') as destination:
-        # en appelant la methode Uploadfil.chunks() au lieu de read(), on peut s’assurer que les gros fichiers ne saturent pas la mémoire du système.
-        for chunk in f.chunks():
-            destination.write(chunk)
+    global context
 
     # destination = open('configSalle/act_oper.csv', 'wb+')
     # t = f.readlines()
     # for i in range(len(t)):
     #     destination.write(t[i])
     # destination.close()
-    exec(open('configSalle/chrgt_conf_salle.py').read())
+
+    # file=f.readlines()
+    # print(file)
+
+    try:
+        test_type(f, 'actions_operateur')
+    except FileError as e:
+        print('Pb Type :', e.error)
+        context['fileOpeError'] = e.error
+        print(context['fileOpeError'])
+
+    else:
+        print('\n\n\n****************')
+        print('test type valid')
+        print('****************\n\n\n')
+        with open(settings.MEDIA_ROOT+'/act_oper.csv', 'wb+') as destination:
+        # en appelant la methode Uploadfil.chunks() au lieu de read(), on peut s’assurer que les gros fichiers ne saturent pas la mémoire du systeme.
+            for chunk in f.chunks():
+                destination.write(chunk)
+        #exec(open('configSalle/chrgt_conf_salle.py').read())
+        LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
+        PATH_OPE = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "configSalle", "chrgt_conf_salle.py")
+        exec(open(PATH_OPE, encoding='latin-1').read())
+    
     
 def handle_uploaded_file_com(f):
-    with open(settings.MEDIA_ROOT+'/tickets_comm.csv', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-    LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
-    PATH_CSVTOSQL = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "fromCSVtoSQL.py")
-    exec(open(PATH_CSVTOSQL).read())
+    global context
+
+    try:
+        test_type(f, 'tickets_de_communication')
+    except FileError as e:
+        print('Pb Type :', e.error)
+        context['fileComError'] = e.error
+        print(context['fileComError'])
+
+    else:
+        print('\n\n\n****************')
+        print('test type valid')
+        print('****************\n\n\n') 
+        with open(settings.MEDIA_ROOT+'/tickets_comm.csv', 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
+        PATH_CSVTOSQL = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "communication", "fromCSVtoSQL.py")
+        exec(open(PATH_CSVTOSQL, encoding='latin-1').read())
     
 def handle_uploaded_file_inc(f):
-    with open(settings.MEDIA_ROOT+'/tickets_incidents.csv', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-    exec(open('incident/chargement_conf_incidents.py').read())
+    global context
+
+    try:
+        test_type(f, 'tickets_incident')
+    except FileError as e:
+        print('Pb Type :', e.error)
+        context['fileIncError'] = e.error
+        print(context['fileIncError'])
+
+    else:
+        print('\n\n\n****************')
+        print('test type valid')
+        print('****************\n\n\n')
+        with open(settings.MEDIA_ROOT+'/tickets_incidents.csv', 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+        LILAS_DIR = os.path.dirname(os.path.dirname(__file__))
+        PATH_INC = os.path.join(os.path.dirname(LILAS_DIR), "LILAS", "incident", "chargement_conf_incidents.py")
+        exec(open(PATH_INC, encoding='latin-1').read())
+        #exec(open('incident/chargement_conf_incidents.py').read())
     
     
 def uploadValid(request):

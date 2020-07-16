@@ -34,7 +34,7 @@ for i in range(len(tabIndex)):
     
     if NumSecteur.objects.filter(numero__contains=str(t[tabIndex[i]][32])).filter(nom__contains=t[tabIndex[i]][5]).count()==0:
         if(t[tabIndex[i]][32] != "") :
-            corr = NumSecteur(id_elts =id , id_lilas = str(i), numero = str(t[tabIndex[i]][32]), nom = t[tabIndex[i]][5])
+            corr = NumSecteur(id_elts =id , id_lilas = str(i), numero = str(t[tabIndex[i]][32]), nom = t[tabIndex[i]][5][1:-1]) #le [1:-1] ne fonctionne pas forcement sous windows
             corr.save()
     else:
         print("Doublons numero secteur")

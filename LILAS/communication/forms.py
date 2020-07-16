@@ -41,8 +41,8 @@ choiceExterieur = choiceExterieur + choiceExterieur2
        
 class NameForm(forms.Form):
     dateInitiale = Date.objects.all()[Date.objects.all().count() - 1]
-    strDate = ""+dateInitiale.date.day+"/"dateInitiale.date.month+"/"+dateInitiale.date.year
-    
+    strDate = ""+dateInitiale.date.day+"/"+dateInitiale.date.month+"/"+dateInitiale.date.year
+
     dateDebut = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10, 'value':strDate})) #Date.objects.all()[Date.objects.all().count() - 1]
     heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'value':'00:00:00'}), initial = "00:00:00")
     dateFin = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10}))

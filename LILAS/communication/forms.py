@@ -21,15 +21,15 @@ listeTypeStats = [
 bddSecteur = NumSecteur.objects.all()
 bddExterieur = NumExterieur.objects.all()
 
-choicesSecteurs = [(1,("Tous secteurs"))]
+choicesSecteurs = [[1,("Tous secteurs")]]
 choiceExterieur = [(1,("Tous les correspondants"))]
-choicesSecteurs2 = [(i+2, (bddSecteur[i].nom)) for i in range(bddSecteur.count())]
+choicesSecteurs2 = [[i+2, (bddSecteur[i].nom)] for i in range(bddSecteur.count())]
 
 choicesSecteurs2.sort(key=lambda x:x[1])
 
 for i in range(len(choicesSecteurs2)) :
     choicesSecteurs2[i][0] = i+2
-    
+
 choiceExterieur2= [(i+2, (bddExterieur[i].nom)) for i in range(bddExterieur.count())]
 
 choicesSecteurs = choicesSecteurs + choicesSecteurs2

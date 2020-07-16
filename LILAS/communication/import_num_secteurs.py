@@ -32,7 +32,7 @@ for i in range(len(tabIndex)):
     id_floating = str(t[tabIndex[i]][0]) #id_elts (string) avec deux 0 apres la virgule
     id = id_floating[0:len(id_floating)-3] #virgule et chiffres apres la virgule enleves
     
-    if NumSecteur.objects.filter(numero__contains=str(t[tabIndex[i]][32])).filter(nom__contains=t[tabIndex[i]][5]).count()==0:
+    if NumSecteur.objects.filter(numero__contains=str(t[tabIndex[i]][32])).filter(nom__contains=t[tabIndex[i]][5][1:-1]).count()==0:
         if(t[tabIndex[i]][32] != "") :
             corr = NumSecteur(id_elts =id , id_lilas = str(i), numero = str(t[tabIndex[i]][32]), nom = t[tabIndex[i]][5][1:-1]) #le [1:-1] ne fonctionne pas forcement sous windows
             corr.save()

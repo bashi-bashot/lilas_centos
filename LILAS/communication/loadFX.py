@@ -41,6 +41,15 @@ t = chargeFichier()
 tabIndex = chercheFX(t)
 tabIndexLif=chercheLif(t)
 
+#On cree un faisceau fictif
+nomFx = "Fx FICTIF"
+faisc = Faisceau(nom = nomFx, id_elts="abcd", id_lilas='abcd')
+if Faisceau.objects.filter(nom__contains=nomFx).count()==0:
+    faisc.save()
+else :
+    print("Faisceau fictif deja existant")
+#Pour chaque element de TabIndexLIF on cree une LIF. Au pire, elle existe deja
+
 for i in tabIndex :
     t[i] = t[i].split(';')
     
@@ -146,14 +155,7 @@ for i in range(len(tabIndexLif)):
                 print('lif deja presente')
     
 #On s'occupe maintenant des LIFs orphelines 
-#On cree un faisceau fictif
-nomFx = "Fx FICTIF"
-faisc = Faisceau(nom = nomFx, id_elts="abcd", id_lilas='abcd')
-if Faisceau.objects.filter(nom__contains=nomFx).count()==0:
-    faisc.save()
-else :
-    print("Faisceau fictif deja existant")
-#Pour chaque element de TabIndexLIF on cree une LIF. Au pire, elle existe deja
+
 
 #On doit determiner le dernier id id_lilas attribue
 listeLifExistantes = LIF.objects.all()

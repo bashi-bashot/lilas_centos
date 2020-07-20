@@ -54,11 +54,18 @@ def index(request):
     listeDeTicket = []
     #formulaireDates = NameForm(request.POST, choice_list_sect = GLOB_TAB_SECT, choice_list_corr = GLOB_TAB_CORREXTE)
     formulaireDates = NameForm(request.POST)
+
+    #Creation de la liste qui contient les dates selectionnables dans le datepicker
+    bdd_datePicker = Date.objects.all()
+    date__datePicker = []
+    for i in range(len(bdd_datePicker)):
+        date__datePicker.append(bdd_datePicker[i].date)
+
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------
     
     #1ère création du contexte
-    context = {'AppelListe':AppelListe, 'form':formulaireDates} 
+    context = {'AppelListe':AppelListe, 'form':formulaireDates, 'valid_date':date__datePicker} 
     
         
     if request.method == 'POST': #Si on a rempli un formulaire 
@@ -679,7 +686,7 @@ def index(request):
             #print(len(listeStat))
             
             
-            context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat} #, 'ListeStats':listeStat
+            context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker} #, 'ListeStats':listeStat
             
 
             # context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 

@@ -224,6 +224,8 @@ def createAppel(t, listeLif):
                 ligne1 = ligne1[i+2:len(ligne1)] #linge1 vaut la chaine exacte de la carte LIF
                 ligne1 = ligne1.replace(" ", "") #On enleve les espaces
                 for p in listeLif : #On cherche maintenant une correspondance dans nos LIFs
+                    print(p.nom)
+                    print(ligne1)
                     if p.nom == ligne1 :
                         faisceauAppelant = p.faisceau.nom
                         break

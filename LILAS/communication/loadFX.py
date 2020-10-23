@@ -107,12 +107,17 @@ for i in tabIndexLif :
     #print(i)
 
 for i in range(len(tabIndexLif)):
+    #On sauvegarde l'id de la lif dont on souhaite connaitre le faisceau auquel elle appartient
     id_floating = str(t[tabIndexLif[i]][0]) #id_elts (string) avec deux 0 apres la virgule
     id = id_floating[0:len(id_floating)-3] #virgule et chiffres apres la virgule enleves
+
     #id = id_floating
     #print(id_floating)
     #print(id)
+
+    #On initialise un id impossible pour le faisceau
     id_fx = '-1'
+
     #On regarde si il existe un element de type_association : 24 qui lie le numero de LIF avec un numero de faisceau
     for k in tabLien :
         k = k.split(";")
@@ -120,9 +125,9 @@ for i in range(len(tabIndexLif)):
         if k[0] == '24' :
             print("Association LIF-FAISCEAU trouvee")
             print(str(id))
-            print(k[2][0:len(k[2])-4])
-            if str(k[2][0:len(k[2])-4]) == str(id) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut regarder l'id_elts du faisceau
-                id_fx = k[1][0:len(k[1])-3]
+            print(k[1][0:len(k[2])-4])
+            if str(k[1][0:len(k[2])-4]) == str(id) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut sauvegarder l'id_elts du faisceau
+                id_fx = k[2][0:len(k[1])-3]
                 print("Faisceau trouve avec l'id : "+id_fx)
             #else :
                 #print("Probleme :")

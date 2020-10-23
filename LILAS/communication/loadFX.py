@@ -108,8 +108,8 @@ for i in tabIndexLif :
 
 for i in range(len(tabIndexLif)):
     id_floating = str(t[tabIndexLif[i]][0]) #id_elts (string) avec deux 0 apres la virgule
-    #id = id_floating[0:len(id_floating)-3] #virgule et chiffres apres la virgule enleves
-    id = id_floating
+    id = id_floating[0:len(id_floating)-3] #virgule et chiffres apres la virgule enleves
+    #id = id_floating
     #print(id_floating)
     #print(id)
     id_fx = '-1'
@@ -118,14 +118,14 @@ for i in range(len(tabIndexLif)):
         k = k.split(";")
         #print(k[0])
         if k[0] == '24' :
-            #print("Association LIF-FAISCEAU trouvee")
+            print("Association LIF-FAISCEAU trouvee")
             if k[2][0:len(k[2])-4] == str(id_floating) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut regarder l'id_elts du faisceau
                 id_fx = k[1][0:len(k[1])-3]
-                #print("Faisceau trouve avec l'id : "+id_fx)
+                print("Faisceau trouve avec l'id : "+id_fx)
             #else :
-                #print("Probleme :")
-                #print(str(id_floating))
-                #print(k[2][0:len(k[2])-4])
+                print("Probleme :")
+                print(str(id_floating))
+                print(k[2][0:len(k[2])-4])
     
     fxLifCourrant = ""
     if id_fx == '-1' :

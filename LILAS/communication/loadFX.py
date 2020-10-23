@@ -64,7 +64,7 @@ for i in range(len(tabIndex)):
 
 
     if Faisceau.objects.filter(nom__contains=t[tabIndex[i]][5]).count()==0:
-        fx = Faisceau(id_elts =id , id_lilas = str(i), nom = t[tabIndex[i]][5].replace('"',''))
+        fx = Faisceau(id_elts =id[0:len(str(id))-3] , id_lilas = str(i), nom = t[tabIndex[i]][5].replace('"',''))
         fx.save()
     else :
         print('fx deja present')

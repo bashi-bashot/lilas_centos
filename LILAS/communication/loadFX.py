@@ -121,9 +121,7 @@ for i in range(len(tabIndexLif)):
             print("Association LIF-FAISCEAU trouvee")
             print(str(id))
             print(k[2][0:len(k[2])-4])
-            print("taille id : "+str(len(id)))
-            print("taille k[2][0:len(k[2])-4] : "+str(len(k[2][0:len(k[2])-4])))
-            if k[2][0:len(k[2])-4] == str(id) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut regarder l'id_elts du faisceau
+            if str(k[2][0:len(k[2])-4]) == str(id) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut regarder l'id_elts du faisceau
                 id_fx = k[1][0:len(k[1])-3]
                 print("Faisceau trouve avec l'id : "+id_fx)
             #else :

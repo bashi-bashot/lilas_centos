@@ -125,8 +125,8 @@ for i in range(len(tabIndexLif)):
         if k[0] == '24' :
             print("Association LIF-FAISCEAU trouvee")
             print(str(id))
-            print(k[2][0:len(k[2])])
-            if str(k[2][0:len(k[2])]) == str(id_floating) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut sauvegarder l'id_elts du faisceau
+            print(k[2][0:len(k[2])-1])
+            if str(k[2][0:len(k[2])-1]) == str(id_floating) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut sauvegarder l'id_elts du faisceau
                 id_fx = k[1][0:len(k[1])-3]
                 print("Faisceau trouve avec l'id : "+id_fx)
             #else :

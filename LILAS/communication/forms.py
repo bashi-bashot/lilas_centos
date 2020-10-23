@@ -40,26 +40,21 @@ choiceExterieur = choiceExterieur + choiceExterieur2
 
        
 class NameForm(forms.Form):
-    strDate=""
-    if(Date.objects.all().count()!=0):
-        dateInitiale = Date.objects.all()[Date.objects.all().count() - 1]
-        day = ""
-        month = ""
-        if(len(str(dateInitiale.date.day)) == 1):
-            day = "0"+str(dateInitiale.date.day)
-        else : 
-            day = str(dateInitiale.date.day)
+    dateInitiale = Date.objects.all()[Date.objects.all().count() - 1]
+    day = ""
+    month = ""
+    if(len(str(dateInitiale.date.day)) == 1):
+        day = "0"+str(dateInitiale.date.day)
+    else : 
+        day = str(dateInitiale.date.day)
 
-        if(len(str(dateInitiale.date.month)) == 1):
-            month = "0"+str(dateInitiale.date.month)
-        else : 
-            month = str(dateInitiale.date.month)
+    if(len(str(dateInitiale.date.month)) == 1):
+        month = "0"+str(dateInitiale.date.month)
+    else : 
+        month = str(dateInitiale.date.month)
+        
 
-        strDate = ""+day+"/"+month+"/"+str(dateInitiale.date.year)
-    else :
-        strDate = "test"
-
-    
+    strDate = ""+day+"/"+month+"/"+str(dateInitiale.date.year)
 
     dateDebut = forms.DateField(widget=widgets.AdminDateWidget(attrs={'size':10, 'value':strDate})) #Date.objects.all()[Date.objects.all().count() - 1]
     heureDebut  = forms.CharField(max_length=8, widget=forms.TextInput(attrs={'size':10, 'value':'00:00:00'}), initial = "00:00:00")

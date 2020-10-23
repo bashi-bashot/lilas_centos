@@ -125,9 +125,9 @@ for i in range(len(tabIndexLif)):
         if k[0] == '24' :
             print("Association LIF-FAISCEAU trouvee")
             print(str(id))
-            print(k[1][0:len(k[2])-4])
-            if str(k[1][0:len(k[2])-4]) == str(id) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut sauvegarder l'id_elts du faisceau
-                id_fx = k[2][0:len(k[1])-3]
+            print(k[2][0:len(k[2])])
+            if str(k[2][0:len(k[2])]) == str(id_floating) : #Si on trouve l'id_elts d'une LIF dans le tableau d'association, alors il faut sauvegarder l'id_elts du faisceau
+                id_fx = k[1][0:len(k[1])-3]
                 print("Faisceau trouve avec l'id : "+id_fx)
             #else :
                 #print("Probleme :")
@@ -149,7 +149,7 @@ for i in range(len(tabIndexLif)):
         for faisceau in tabFaisceaux :
             if faisceau.id_elts == id_fx :
                 fxLifCourrant = faisceau
-                break;
+                break
         #print("Verif fxlifcourrant")
         #print(fxLifCourrant)
         if fxLifCourrant != "" :        
@@ -179,9 +179,9 @@ for p in tabIndexLif :
     l = LIF(nom = t[p][5].replace('"',''), faisceau = faisc, id_elts = t[p][0][0:len(t[p][0])-3], id_lilas = maxID)
     if LIF.objects.filter(nom__contains=t[p][5].replace('"','')).count() == 0 :
         l.save()
-    else :
-        print("LIF deja existante")
-        print(t[p][5].replace('"',''))
+    #else :
+        #print("LIF deja existante")
+        #print(t[p][5].replace('"',''))
     
     
     

@@ -64,7 +64,7 @@ for i in range(len(tabIndex)):
 
 
     if Faisceau.objects.filter(nom__contains=t[tabIndex[i]][5]).count()==0:
-        fx = Faisceau(id_elts =id , id_lilas = str(i), nom = t[tabIndex[i]][5])
+        fx = Faisceau(id_elts =id , id_lilas = str(i), nom = t[tabIndex[i]][5].replace('"',''))
         fx.save()
     else :
         print('fx deja present')
@@ -148,9 +148,9 @@ for i in range(len(tabIndexLif)):
         if fxLifCourrant != "" :        
             #print(t[tabIndexLif[i]][5][1:-1])
             if LIF.objects.filter(nom__contains=t[tabIndexLif[i]][5]).count()==0:
-                lif = LIF(id_elts =id , id_lilas = str(i), nom = t[tabIndexLif[i]][5], faisceau = fxLifCourrant)
+                lif = LIF(id_elts =id , id_lilas = str(i), nom = t[tabIndexLif[i]][5].replace('"',''), faisceau = fxLifCourrant)
                 lif.save()
-                print("LIF sauvee en FLAG1")
+                print("LIF sauvee en FLAG1, fichier loadFX.py")
             else:
                 print('lif deja presente')
     

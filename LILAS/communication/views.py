@@ -83,7 +83,7 @@ def index(request):
             strHeureDebut = formulaireDates.cleaned_data['heureDebut'] #On récupère l'heure de début sous forme de chaine de caractère (pour le moment)
             strHeureFin = formulaireDates.cleaned_data['heureFin'] #On récupère l'heure de fin sous forme de chaine de caractère (pour le moment)
             
-            # print(strHeureDebut)
+            print('/n/n****************************'+ strHeureDebut)
             
             #On crée ensuite les objets datetime de début et de fin
             date_time_deb = datetime( dateDeb.year, dateDeb.month, dateDeb.day, int(strHeureDebut[0:2]),int(strHeureDebut[3:5]), int(strHeureDebut[6:8])) #date naive
@@ -110,7 +110,7 @@ def index(request):
                     print("Selection des appels sur une seule journée")
                 else :
                     print("Date non existante dans la base de données")
-                    listeDates = Date.objects.all()[0].Appel.all()
+                    listeDates = Date.objects.all()[0].Appel.all().filter(duree__gt=3000)
                     
 
             else : # Si on fait une recherche sur plusieurs jours
@@ -796,5 +796,3 @@ def statistiquesIndifferent(tab):
     listeStat.append(listeEphemere)
     
     return listeStat
-    
- 

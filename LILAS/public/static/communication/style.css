@@ -13,7 +13,8 @@
 }
 
 html
-{
+{   
+   height: 100%;
    font-family: Calibri;
    cursor: default;
 }
@@ -25,20 +26,15 @@ header
     color: white;
 }
 
-header .boutonApp:hover 
+header .boutonApp
+{
+    transition: 0.5s;
+}
+
+header .boutonApp:hover
 {
     background-color: #d3defc;
     color: #6c7ae0;
-}
-
-
-
-body
-{
-    height: auto;
-    width: auto;
-    margin: auto;
-    padding: auto;
 }
 
 footer 
@@ -49,6 +45,13 @@ footer
     right: 0
 }
 
+body
+{
+    height: auto;
+    width: auto;
+    margin: auto;
+    padding: auto;
+}
 
 
 h6

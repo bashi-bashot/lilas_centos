@@ -2,7 +2,8 @@
 /* Fichier Style CSS CONFIG_SALLE */
 
 html
-{
+{   
+   height: 100%;
    font-family: Calibri;
    cursor: default;
 }
@@ -12,6 +13,11 @@ header
     background-color: #6c7ae0;
     /* color: #d3defc; */
     color: white;
+}
+
+header .boutonApp
+{
+    transition: 0.5s;
 }
 
 header .boutonApp:hover
@@ -35,7 +41,6 @@ body
     margin: auto;
     padding: auto;
 }
-
 
 table
 {
@@ -131,6 +136,7 @@ table#tabConfSelect th {
 
 table#tabConfSelect tr {
     background-color : #f9f9f9;
+    transition: 0.2s;
 }
 
 table#tabConfSelect th, table#tabConfSelect td{

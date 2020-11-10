@@ -1,6 +1,6 @@
 from communication.models import *
 
-Appel.objects.all().delete()
+#Appel.objects.all().delete()
 NumExterieur.objects.all().delete()
 NumSecteur.objects.all().delete()
 Faisceau.objects.all().delete()

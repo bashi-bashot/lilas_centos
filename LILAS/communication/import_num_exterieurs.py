@@ -94,5 +94,3 @@ for i in range(len(tabIndexGRP)):
         print("Correspondant deja existant")
 
 # Commande shell manage.py : exec(open('communication/import_num_exterieurs.py').read())
-
-#exec(open('communication/script_change_numéro.py').read())

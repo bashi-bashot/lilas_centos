@@ -26,7 +26,7 @@ SECRET_KEY = 'a*iq&psv%&#!ivpey=h=epa9j-l3sm)oq58rjj(4(vr^!g$9y('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['lilas.crnan'] #    , 'localhost'
+ALLOWED_HOSTS = ['lilas.crnan']
 
 
 # Application definition

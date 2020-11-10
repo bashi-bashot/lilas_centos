@@ -144,6 +144,13 @@
             {% endif %}
             </div>
         </div>
+        <div id='divHiddenDates'>
+            {% if datesNonEmpty %}
+            <ul>
+                {%for d in datesNonEmpty%}
+                <li>{{d.date}}</li>
+            </ul>
+        </div>
         <!-- Probleme selection tab stat sur un petit écran avec le footer -->
         <!-- <footer> -->
             <!-- <p>{{ AppelListe.0.date}} -------- {{ AppelListe.0.date}}</p> -->

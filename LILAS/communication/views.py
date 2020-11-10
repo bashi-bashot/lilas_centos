@@ -49,6 +49,8 @@ def index(request):
     tabExterieurs = NumExterieur.objects.all() #On récupère tous les numéros extérieurs
     tabSecteurs = NumSecteur.objects.all() #On récupère tous les secteurs
     tabNumExterieur = NumExterieur.objects.all()
+
+    tabDatesNonEmpty = Date.objets.all()
    
     
     listeDeTicket = []
@@ -65,7 +67,7 @@ def index(request):
     #---------------------------
     
     #1ère création du contexte
-    context = {'AppelListe':AppelListe, 'form':formulaireDates, 'valid_date':date__datePicker} 
+    context = {'AppelListe':AppelListe, 'form':formulaireDates, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty} 
     
         
     if request.method == 'POST': #Si on a rempli un formulaire 

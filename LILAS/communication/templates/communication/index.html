@@ -149,7 +149,9 @@
             <ul>
                 {%for d in datesNonEmpty%}
                 <li>{{d.date}}</li>
+                {% endfor %}
             </ul>
+            {% endif %}
         </div>
         <!-- Probleme selection tab stat sur un petit écran avec le footer -->
         <!-- <footer> -->

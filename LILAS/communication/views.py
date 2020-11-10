@@ -50,7 +50,11 @@ def index(request):
     tabSecteurs = NumSecteur.objects.all() #On récupère tous les secteurs
     tabNumExterieur = NumExterieur.objects.all()
 
-    tabDatesNonEmpty = Date.objets.all()
+    tabDatesNonEmpty = []
+    tampon = Date.objets.all()
+
+    for i in range(len(tampon)):
+        tabDatesNonEmpty.append(tampon[i].date)
    
     
     listeDeTicket = []

@@ -746,14 +746,14 @@
             {
                 var ligne = divDates[i].cells;
                 tabDatesUsed.push(ligne.innerHTML);
-                console.log(ligne);
+                console.log(ligne.innerHTML);
             }
 
         
         
         
             function DisableDates(date) {
-                var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+                var string = jQuery.datepicker.formatDate('dd-mm-yy', date);
                 return [dates.indexOf(string) != -1];
             }
 

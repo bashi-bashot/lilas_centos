@@ -718,7 +718,7 @@
                 changeYear: true,
                 showWeek: true,
                 firstDay: 1,
-                beforeShowDay: DisableDates,
+                beforeShowDay: DisableAllDates,
                 /*showOtherMonths: true,
                 selectOtherMonths: true*/ });
                 
@@ -738,6 +738,10 @@
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
                 return [dates.indexOf(string) == -1];
+            }
+
+            function DisableAllDates() {
+                return [false, ''];
             }
 
             

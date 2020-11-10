@@ -735,7 +735,7 @@
             var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
 
             function DisableDates(date) {
-                var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+                var string =  $('#id_dateDebut').datepicker.formatDate('dd/mm/yy', date);
                 return [dates.indexOf(string) == -1];
             }
 

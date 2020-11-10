@@ -144,15 +144,16 @@
             {% endif %}
             </div>
         </div>
-        <div id='divHiddenDates' hidden>
+        <table id='divHiddenDates' hidden>
             {% if datesNonEmpty %}
-            <ul>
+            <tbody>
                 {%for d in datesNonEmpty%}
-                <li>{{d.date}}</li>
+                <tr>{{d.date}}</tr>
                 {% endfor %}
-            </ul>
+            </tbody>
             {% endif %}
-        </div>
+        </table>
+
         <!-- Probleme selection tab stat sur un petit écran avec le footer -->
         <!-- <footer> -->
             <!-- <p>{{ AppelListe.0.date}} -------- {{ AppelListe.0.date}}</p> -->
@@ -735,10 +736,23 @@
 
             var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
 
+            const divDates = document.getElementById('divHiddenDates');
+            var tabDatesUsed = new Array();
+            longueur = divDates
+        
+
+            for (var i = 1; i < longueur; i++)
+            {
+                var ligne = tabDatesUsed[i].cells;
+                tabDatesUsed.push(ligne);
+                console.log(ligne)
+            }
+
+        
+        
+        
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
-                  
-
                 return [dates.indexOf(string) != -1];
             }
 

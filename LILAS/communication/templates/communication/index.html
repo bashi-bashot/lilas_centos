@@ -144,16 +144,17 @@
             {% endif %}
             </div>
         </div>
-        <table id='divHiddenDates' hidden>
-            {% if datesNonEmpty %}
-            <tbody>
-                {%for d in datesNonEmpty%}
-                <tr>{{d.date}}</tr>
-                {% endfor %}
-            </tbody>
-            {% endif %}
-        </table>
-
+        <div hidden>
+            <table id='divHiddenDates'>
+                {% if datesNonEmpty %}
+                <tbody>
+                    {%for d in datesNonEmpty%}
+                    <tr>{{d.date}}</tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
         <!-- Probleme selection tab stat sur un petit écran avec le footer -->
         <!-- <footer> -->
             <!-- <p>{{ AppelListe.0.date}} -------- {{ AppelListe.0.date}}</p> -->
@@ -738,14 +739,14 @@
 
             const divDates = document.getElementById('divHiddenDates');
             var tabDatesUsed = new Array();
-            longueur = divDates
+            longueur = divDates.length;
         
 
             for (var i = 1; i < longueur; i++)
             {
                 var ligne = divDates[i].cells;
-                tabDatesUsed.push(ligne);
-                console.log(ligne)
+                tabDatesUsed.push(ligne.innerHTML);
+                console.log(ligne);
             }
 
         

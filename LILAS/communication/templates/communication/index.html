@@ -226,20 +226,24 @@
         }
         
         //On récupère le tableau d'appels dans un tableau javascript
-        var tableauAppels = document.getElementById("tabPrincipale").rows;
-        var l = tableauAppels.length;
-        var tabAppel = new Array();
-        
-        for (var i = 1; i < l; i++) //L et non 1
+        if(document.getElementById("tabPrincipale") != null)
         {
-            var ligne = tableauAppels[i].cells;
-            var tampon = new Array();
-            for (var j = 0; j < ligne.length; j++)
+            var tableauAppels = document.getElementById("tabPrincipale").rows;
+            var l = tableauAppels.length;
+            var tabAppel = new Array();
+            
+            for (var i = 1; i < l; i++) //L et non 1
             {
-                tampon.push(ligne[j].innerHTML);
+                var ligne = tableauAppels[i].cells;
+                var tampon = new Array();
+                for (var j = 0; j < ligne.length; j++)
+                {
+                    tampon.push(ligne[j].innerHTML);
+                }
+                tabAppel.push(tampon);
             }
-            tabAppel.push(tampon);
         }
+        
             
         //tabAppel est ici le tableau d'appels. Il est rempli. Il ne contient a priori pas la première ligne (le nom des colonnes) du tableau
         
@@ -731,7 +735,6 @@
                 
             }
 
-
             $(document).ready(function(){
                 $('#id_dateDebut').datepicker({ dateFormat: 'dd/mm/yy',
                 changeMonth: true,
@@ -754,12 +757,7 @@
                
             });
             function DisableDates(date) {
-                
-                console.log(date)
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
-
-                console.log(string)
-
                 return [tabDatesUsed.indexOf(string) != -1];
             }
 

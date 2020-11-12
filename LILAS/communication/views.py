@@ -50,8 +50,8 @@ def index(request):
     tabSecteurs = NumSecteur.objects.all() #On récupère tous les secteurs
     tabNumExterieur = NumExterieur.objects.all()
 
-    #tabDatesNonEmpty = []
-    tabDatesNonEmpty = Date.objects.all()
+    tabDatesNonEmpty = []
+    #tabDatesNonEmpty = Date.objects.all()
 
     #for i in range(len(tampon)):
     #    tabDatesNonEmpty.append(tampon[i].date)
@@ -80,7 +80,7 @@ def index(request):
         #strDate = strDate+str(bdd_datePicker[i].date.year)
         """
         #date__datePicker.append(strDate)
-        date__datePicker.append(bdd_datePicker[i].date.strftime("%d/%m/%y"))
+        tabDatesNonEmpty.append(bdd_datePicker[i].date.strftime("%d/%m/%y"))
 
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------

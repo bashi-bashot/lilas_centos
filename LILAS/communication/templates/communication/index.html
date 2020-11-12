@@ -506,7 +506,7 @@
         }
         
         //On récupère le tableau de statistiques dans un tableau javascript
-        var tableau = document.getElementById("tabStatF").rows;
+        var tableau = document.getElementById('tabStatF').rows;
         var longueur = tableau.length;
         var tabStats = new Array();
         
@@ -731,9 +731,6 @@
                 
             }
 
-            console.log(tabDatesUsed.length);
-            console.log(tabDatesUsed[0]);
-
 
             $(document).ready(function(){
                 $('#id_dateDebut').datepicker({ dateFormat: 'dd/mm/yy',
@@ -750,15 +747,12 @@
                 changeYear: true,
                 showWeek: true,
                 firstDay: 1,
+                beforeShowDay: DisableDates,
                 /*showOtherMonths: true,
                 selectOtherMonths: true*/ });
                 
                
             });
-
-            var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
-            console.log(dates[0]);
-        
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
                 return [tabDatesUsed.indexOf(string) != -1];

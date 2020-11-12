@@ -738,7 +738,7 @@
             var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
 
             const divDates = document.getElementById('divHiddenDates');
-            var tabDatesUsed = new Array();
+            var tabDatesUsed = []
             longueur = divDates.length;
         
 
@@ -752,7 +752,7 @@
         
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
-                return [dates.indexOf(string) != -1];
+                return [tabDatesUsed.indexOf(string) != -1];
             }
 
             function DisableAllDates() {

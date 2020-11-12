@@ -714,6 +714,27 @@
     <!-- NECESSAIRE A L'AFFICHAGE DU DATEPICKER -->
 
         <script>
+
+            const divDates = document.getElementById('divHiddenDates').rows;
+            var tabDatesUsed = []
+            longueur = divDates.length;
+
+            console.log(longueur);
+
+            /*console.log(divDates[0].cells[0].innerHTML);*/
+        
+
+            for (var i = 0; i < longueur; i++)
+            {
+                var ligne = divDates[i].cells;
+                tabDatesUsed.push(divDates[i].cells[0].innerHTML);
+                
+            }
+
+            console.log(tabDatesUsed.length);
+            console.log(tabDatesUsed[0]);
+
+
             $(document).ready(function(){
                 $('#id_dateDebut').datepicker({ dateFormat: 'dd/mm/yy',
                 changeMonth: true,
@@ -736,25 +757,6 @@
             });
 
             var dates = ["20/01/2018", "21/01/2018", "22/01/2018", "23/01/2018"];
-
-            const divDates = document.getElementById('divHiddenDates').rows;
-            var tabDatesUsed = []
-            longueur = divDates.length;
-
-            console.log(longueur);
-
-            /*console.log(divDates[0].cells[0].innerHTML);*/
-        
-
-            for (var i = 0; i < longueur; i++)
-            {
-                var ligne = divDates[i].cells;
-                tabDatesUsed.push(divDates[i].cells[0].innerHTML);
-                
-            }
-
-            console.log(tabDatesUsed.length);
-            console.log(tabDatesUsed[0]);
         
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);

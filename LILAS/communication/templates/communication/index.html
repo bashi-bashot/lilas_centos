@@ -149,9 +149,7 @@
                 {% if datesNonEmpty %}
                 <tbody>
                     {%for d in datesNonEmpty%}
-                    <tr>
-                        <td>{{d.date}}</td>
-                    </tr>
+                    <tr><td>{{d.date}}</td></tr>
                     {% endfor %}
                 </tbody>
                 {% endif %}
@@ -747,7 +745,7 @@
             for (var i = 1; i < longueur; i++)
             {
                 var ligne = divDates[i].cells;
-                tabDatesUsed.push(ligne[0].innerHTML);
+                tabDatesUsed.push(ligne[i][0].innerHTML);
                 //console.log(ligne.innerHTML);
             }
         

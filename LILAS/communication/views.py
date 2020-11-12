@@ -65,7 +65,7 @@ def index(request):
     bdd_datePicker = Date.objects.all()
     date__datePicker = []
     for i in range(len(bdd_datePicker)):
-        date__datePicker.append(bdd_datePicker[i].date)
+        date__datePicker.append(str(bdd_datePicker[i].date))
 
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------

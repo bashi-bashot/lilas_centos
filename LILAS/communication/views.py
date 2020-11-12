@@ -707,7 +707,7 @@ def index(request):
             #print(len(listeStat))
             
             
-            context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker} #, 'ListeStats':listeStat
+            context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty} #, 'ListeStats':listeStat
             
 
             # context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 

@@ -65,7 +65,20 @@ def index(request):
     bdd_datePicker = Date.objects.all()
     date__datePicker = []
     for i in range(len(bdd_datePicker)):
-        date__datePicker.append(str(bdd_datePicker[i].date))
+        strDate=""
+        if(len(str(bdd_datePicker[i].date.day)) == 1):
+            strDate=strDate+"0"+bdd_datePicker[i].date.day
+        else :
+            strDate=strDate+bdd_datePicker[i].date.day
+
+        if(len(str(bdd_datePicker[i].date.month)) == 1):
+            strDate=strDate+"0"+bdd_datePicker[i].date.month
+        else :
+            strDate=strDate+bdd_datePicker[i].date.month
+
+        strDate = strDate+bdd_datePicker[i].date.year
+
+        date__datePicker.append(strDate)
 
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------

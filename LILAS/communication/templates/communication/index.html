@@ -740,13 +740,14 @@
             const divDates = document.getElementById('divHiddenDates');
             var tabDatesUsed = []
             longueur = divDates.length;
+
+            console.log(longueur);
         
 
             for (var i = 1; i < longueur; i++)
             {
                 var ligne = divDates[i].cells;
                 tabDatesUsed.push(ligne[i][0].innerHTML);
-                console.log(ligne[i][0].innerHTML);
                 console.log("test");
             }
         

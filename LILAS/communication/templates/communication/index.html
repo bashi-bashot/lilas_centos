@@ -511,7 +511,7 @@
         if(document.getElementById('tabStatF') != null)
         {
             console.log("Element tabStatF trouvé");
-            
+
             //On récupère le tableau de statistiques dans un tableau javascript
             var tableau = document.getElementById('tabStatF').rows;
             var longueur = tableau.length;
@@ -540,14 +540,14 @@
                 
                 if (toggle == 0)
                 {
-                    
+                    console.log("tri croissant");
                     //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
                     tabStats.sort(triParDureeCumuleeCroissant);
                     toggle = 1;
                 }
                 else if (toggle == 1)
                 {
-                    
+                    console.log("tri décroissant");
                     //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
                     tabStats.sort(triParDureeCumuleeDecroissant);
                     toggle = 0;
@@ -556,6 +556,7 @@
                 
                 
                 //On remplace maintenant les lignes du tableau
+                console.log("remplacement dans le tableau");
                 for (var i = 0; i < longueur-1; i++)
                 {
                     var ligne = tableau[i+1].cells;
@@ -564,6 +565,8 @@
                         ligne[j].innerHTML = tabStats[i][j];
                     }
                 }
+
+                console.log("remplacement fait");
                 
                 
                 

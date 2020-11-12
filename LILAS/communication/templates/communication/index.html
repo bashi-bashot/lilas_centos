@@ -754,7 +754,12 @@
                
             });
             function DisableDates(date) {
+                
+                console.log(date)
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+
+                console.log(string)
+
                 return [tabDatesUsed.indexOf(string) != -1];
             }
 

@@ -149,7 +149,9 @@
                 {% if datesNonEmpty %}
                 <tbody>
                     {%for d in datesNonEmpty%}
-                    <tr>{{d.date}}</tr>
+                    <tr>
+                        <td>{{d.date}}</td>
+                    </tr>
                     {% endfor %}
                 </tbody>
                 {% endif %}

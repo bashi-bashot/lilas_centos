@@ -507,206 +507,211 @@
             return ((x > y) ? -1 : ((x < y) ? 1 : 0));
         }
         
-        //On récupère le tableau de statistiques dans un tableau javascript
-        var tableau = document.getElementById('tabStatF').rows;
-        var longueur = tableau.length;
-        var tabStats = new Array();
-        
-        for (var i = 1; i < longueur; i++)
+
+        if(document.getElementById('tabStatF') != null)
         {
-            var ligne = tableau[i].cells;
-            var tampon = new Array();
-            for (var j = 0; j < 6; j++)
+            //On récupère le tableau de statistiques dans un tableau javascript
+            var tableau = document.getElementById('tabStatF').rows;
+            var longueur = tableau.length;
+            var tabStats = new Array();
+            
+            for (var i = 1; i < longueur; i++)
             {
-                tampon.push(ligne[j].innerHTML);
+                var ligne = tableau[i].cells;
+                var tampon = new Array();
+                for (var j = 0; j < 6; j++)
+                {
+                    tampon.push(ligne[j].innerHTML);
+                }
+                tabStats.push(tampon);
             }
-            tabStats.push(tampon);
+                
+            //tabStats est ici le tableau de statistiques. Il est rempli.
+            
+            //----- CLIQUE BOUTON DUREE CUMULEE -----//
+            
+            const boutonDureeCumulee = document.getElementById('boutonDureeCumulee');
+            boutonDureeCumulee.addEventListener('click', function() {
+                console.log("Duree cumulée");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (toggle == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParDureeCumuleeCroissant);
+                    toggle = 1;
+                }
+                else if (toggle == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParDureeCumuleeDecroissant);
+                    toggle = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < longueur-1; i++)
+                {
+                    var ligne = tableau[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabStats[i][j];
+                    }
+                }
+                
+                
+                
+            });
+            
+            //----- CLIQUE BOUTON NOMBRE APPEL -----//
+            
+            const boutonNombreAppel = document.getElementById('boutonNbAppel');
+            boutonNombreAppel.addEventListener('click', function() {
+                
+            
+                
+                //On regarde à quelle valeur est le toggle
+                console.log("FLAG");
+                if (toggle == 0)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbAppelCroissant);
+                    toggle = 1;
+                }
+                else if (toggle == 1)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbAppelDeroissant);
+                    toggle = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < longueur-1; i++)
+                {
+                    var ligne = tableau[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabStats[i][j];
+                    }
+                }
+                
+                
+                
+            });
+            
+        
+            
+            //----- CLIQUE BOUTON NOMBR ECHEC -----//
+            
+            const boutonNombreEchec = document.getElementById('boutonNbEchec');
+            boutonNombreEchec.addEventListener('click', function() {
+            
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (toggle == 0)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbEchecCroissant);
+                    toggle = 1;
+                }
+                else if (toggle == 1)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbEchecDeroissant);
+                    toggle = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < longueur-1; i++)
+                {
+                    var ligne = tableau[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabStats[i][j];
+                    }
+                }
+                
+                
+                
+            });
+            
+                //----- CLIQUE BOUTON NOMBR REFUS -----//
+            
+            const boutonNombreRefus = document.getElementById('boutonNbRefus');
+            boutonNombreRefus.addEventListener('click', function() {
+            
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (toggle == 0)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbRefusCroissant);
+                    toggle = 1;
+                }
+                else if (toggle == 1)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbRefusDeroissant);
+                    toggle = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < longueur-1; i++)
+                {
+                    var ligne = tableau[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabStats[i][j];
+                    }
+                }
+            });
+            
+                    //----- CLIQUE BOUTON TAUX OCCUPATION -----//
+            
+            const boutonTauxOccupation = document.getElementById('boutonTOccupation');
+            boutonTauxOccupation.addEventListener('click', function() {
+            
+                //On regarde à quelle valeur est le toggle
+                
+                if (toggle == 0)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbTauxOccupationCroissant);
+                    console.log("Tri croissant");
+                    toggle = 1;
+                }
+                else if (toggle == 1)
+                {
+                    //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
+                    tabStats.sort(triParNbTauxOccupationDeroissant);
+                    console.log("Tri décroissant");
+                    toggle = 0;
+                }
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < longueur-1; i++)
+                {
+                    var ligne = tableau[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabStats[i][j];
+                    }
+                }
+            });
         }
-            
-        //tabStats est ici le tableau de statistiques. Il est rempli.
         
-        //----- CLIQUE BOUTON DUREE CUMULEE -----//
-        
-        const boutonDureeCumulee = document.getElementById('boutonDureeCumulee');
-        boutonDureeCumulee.addEventListener('click', function() {
-            console.log("Duree cumulée");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (toggle == 0)
-            {
-                
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParDureeCumuleeCroissant);
-                toggle = 1;
-            }
-            else if (toggle == 1)
-            {
-                
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParDureeCumuleeDecroissant);
-                toggle = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < longueur-1; i++)
-            {
-                var ligne = tableau[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabStats[i][j];
-                }
-            }
-            
-            
-            
-        });
-        
-        //----- CLIQUE BOUTON NOMBRE APPEL -----//
-        
-        const boutonNombreAppel = document.getElementById('boutonNbAppel');
-        boutonNombreAppel.addEventListener('click', function() {
-            
-        
-            
-            //On regarde à quelle valeur est le toggle
-            console.log("FLAG");
-            if (toggle == 0)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbAppelCroissant);
-                toggle = 1;
-            }
-            else if (toggle == 1)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbAppelDeroissant);
-                toggle = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < longueur-1; i++)
-            {
-                var ligne = tableau[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabStats[i][j];
-                }
-            }
-            
-            
-            
-        });
-        
-       
-        
-        //----- CLIQUE BOUTON NOMBR ECHEC -----//
-        
-        const boutonNombreEchec = document.getElementById('boutonNbEchec');
-        boutonNombreEchec.addEventListener('click', function() {
-        
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (toggle == 0)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbEchecCroissant);
-                toggle = 1;
-            }
-            else if (toggle == 1)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbEchecDeroissant);
-                toggle = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < longueur-1; i++)
-            {
-                var ligne = tableau[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabStats[i][j];
-                }
-            }
-            
-            
-            
-        });
-        
-            //----- CLIQUE BOUTON NOMBR REFUS -----//
-        
-        const boutonNombreRefus = document.getElementById('boutonNbRefus');
-        boutonNombreRefus.addEventListener('click', function() {
-        
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (toggle == 0)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbRefusCroissant);
-                toggle = 1;
-            }
-            else if (toggle == 1)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbRefusDeroissant);
-                toggle = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < longueur-1; i++)
-            {
-                var ligne = tableau[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabStats[i][j];
-                }
-            }
-        });
-        
-                //----- CLIQUE BOUTON TAUX OCCUPATION -----//
-        
-        const boutonTauxOccupation = document.getElementById('boutonTOccupation');
-        boutonTauxOccupation.addEventListener('click', function() {
-        
-            //On regarde à quelle valeur est le toggle
-            
-            if (toggle == 0)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbTauxOccupationCroissant);
-                console.log("Tri croissant");
-                toggle = 1;
-            }
-            else if (toggle == 1)
-            {
-                //On trie les lignes de l'Array tabStats par ordre de durée Cumulée croissante.
-                tabStats.sort(triParNbTauxOccupationDeroissant);
-                console.log("Tri décroissant");
-                toggle = 0;
-            }
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < longueur-1; i++)
-            {
-                var ligne = tableau[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabStats[i][j];
-                }
-            }
-        });
         </script>
     
     <!-- NECESSAIRE A L'AFFICHAGE DU DATEPICKER -->

@@ -80,7 +80,7 @@ def index(request):
         #strDate = strDate+str(bdd_datePicker[i].date.year)
         """
         #date__datePicker.append(strDate)
-        date__datePicker.append(bdd_datePicker[i].date.__str__())
+        date__datePicker.append(bdd_datePicker[i].date.strftime("%d/%m/%y"))
 
     # formulaireStatistiques = StatSelectForm(request.POST, )
     #---------------------------

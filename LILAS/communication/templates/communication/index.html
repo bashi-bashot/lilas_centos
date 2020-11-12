@@ -515,6 +515,7 @@
             //On récupère le tableau de statistiques dans un tableau javascript
             var tableau = document.getElementById('tabStatF').rows;
             var longueur = tableau.length;
+            
 
             console.log("longueur : "+longueur);
             var tabStats = new Array();
@@ -533,10 +534,12 @@
             //tabStats est ici le tableau de statistiques. Il est rempli.
             
             //----- CLIQUE BOUTON DUREE CUMULEE -----//
+            console.log("longueur : "+longueur);
             
             const boutonDureeCumulee = document.getElementById('boutonDureeCumulee');
             boutonDureeCumulee.addEventListener('click', function() {
                 console.log("Duree cumulée");
+                console.log("longueur : "+longueur);
                 
                 //On regarde à quelle valeur est le toggle
                 
@@ -559,8 +562,7 @@
                 
                 //On remplace maintenant les lignes du tableau
                 console.log("remplacement dans le tableau");
-                console.log("longueur : ");
-                console.log(longueur);
+                console.log("longueur : "+longueur);
                 for (var i = 0; i < longueur-1; i++)
                 {
                     var ligne = tableau[i+1].cells;

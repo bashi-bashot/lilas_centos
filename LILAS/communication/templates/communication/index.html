@@ -232,7 +232,7 @@
             var l = tableauAppels.length;
             var tabAppel = new Array();
             
-            for (var i = 1; i < l; i++) //L et non 1
+            for (var i = 1; i < l; i++) 
             {
                 var ligne = tableauAppels[i].cells;
                 var tampon = new Array();
@@ -515,6 +515,8 @@
             //On récupère le tableau de statistiques dans un tableau javascript
             var tableau = document.getElementById('tabStatF').rows;
             var longueur = tableau.length;
+
+            console.log("longueur : "+longueur);
             var tabStats = new Array();
             
             for (var i = 1; i < longueur; i++)

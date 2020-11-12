@@ -742,13 +742,15 @@
             longueur = divDates.length;
 
             console.log(longueur);
+
+            console.log(divDates[i].cells[1].innerHTML);
         
 
             for (var i = 1; i < longueur; i++)
             {
                 var ligne = divDates[i].cells;
                 tabDatesUsed.push(ligne[i][0].innerHTML);
-                console.log("test");
+                
             }
         
             function DisableDates(date) {

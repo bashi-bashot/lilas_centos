@@ -534,10 +534,13 @@
             //tabStats est ici le tableau de statistiques. Il est rempli.
             
             //----- CLIQUE BOUTON DUREE CUMULEE -----//
-            console.log("longueur : "+longueur);
             
             const boutonDureeCumulee = document.getElementById('boutonDureeCumulee');
             boutonDureeCumulee.addEventListener('click', function() {
+
+                var tableau = document.getElementById('tabStatF').rows;
+                var longueur = tableau.length;
+
                 console.log("Duree cumulée");
                 console.log("longueur : "+longueur);
                 

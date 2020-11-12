@@ -242,204 +242,202 @@
                 }
                 tabAppel.push(tampon);
             }
+            
+            //tabAppel est ici le tableau d'appels. Il est rempli. Il ne contient a priori pas la première ligne (le nom des colonnes) du tableau
+            
+            //----- CLIQUE BOUTON APPELANT -----//
+            
+            const boutonAppelant = document.getElementById('colonne_appelant');
+            boutonAppelant.addEventListener('click', function() {
+                console.log("Appelant");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (tog == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParAppelantCroissant);
+                    tog = 1;
+                    console.log("Croissant");
+                }
+                else if (tog == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParAppelantDecroissant);
+                    tog = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < l-1; i++)
+                {
+                    var ligne = tableauAppels[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabAppel[i][j];
+                    }
+                }
+                
+                
+                
+            });
+            
+            //----- CLIQUE BOUTON APPELE -----//
+            
+            const boutonAppele = document.getElementById('colonne_appele');
+            boutonAppele.addEventListener('click', function() {
+                console.log("Appele");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (tog == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParAppeleCroissant);
+                    tog = 1;
+                    console.log("Croissant");
+                }
+                else if (tog == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParAppeleDecroissant);
+                    tog = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < l-1; i++)
+                {
+                    var ligne = tableauAppels[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabAppel[i][j];
+                    }
+                }
+                
+            });
+            
+            //----- CLIQUE BOUTON DUREE -----//
+            
+            const boutonDuree = document.getElementById('colonne_duree');
+            boutonDuree.addEventListener('click', function() {
+                console.log("Duree");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (tog == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParDureeCroissant);
+                    tog = 1;
+                    console.log("Croissant");
+                }
+                else if (tog == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParDureeDecroissant);
+                    tog = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < l-1; i++)
+                {
+                    var ligne = tableauAppels[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabAppel[i][j];
+                    }
+                }
+                
+            });
+            
+            //----- CLIQUE BOUTON TYPE -----//
+            
+            const boutonType = document.getElementById('colonne_type');
+            boutonType.addEventListener('click', function() {
+                console.log("type");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (tog == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParTypeCroissant);
+                    tog = 1;
+                    console.log("Croissant");
+                }
+                else if (tog == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParTypeDecroissant);
+                    tog = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < l-1; i++)
+                {
+                    var ligne = tableauAppels[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabAppel[i][j];
+                    }
+                }
+                
+            });
+            
+            
+            //----- CLIQUE BOUTON DATE -----//
+            
+            const boutonDate = document.getElementById('colonne_date');
+            boutonDate.addEventListener('click', function() {
+                console.log("date");
+                
+                //On regarde à quelle valeur est le toggle
+                
+                if (tog == 0)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParDateCroissant);
+                    tog = 1;
+                    console.log("Croissant");
+                }
+                else if (tog == 1)
+                {
+                    
+                    //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
+                    tabAppel.sort(triParDateDecroissant);
+                    tog = 0;
+                }
+                
+                
+                
+                //On remplace maintenant les lignes du tableau
+                for (var i = 0; i < l-1; i++)
+                {
+                    var ligne = tableauAppels[i+1].cells;
+                    for (var j = 0; j < ligne.length; j++)
+                    {
+                        ligne[j].innerHTML = tabAppel[i][j];
+                    }
+                }
+                
+            });
         }
-        
-            
-        //tabAppel est ici le tableau d'appels. Il est rempli. Il ne contient a priori pas la première ligne (le nom des colonnes) du tableau
-        
-        //----- CLIQUE BOUTON APPELANT -----//
-        
-        const boutonAppelant = document.getElementById('colonne_appelant');
-        boutonAppelant.addEventListener('click', function() {
-            console.log("Appelant");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (tog == 0)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParAppelantCroissant);
-                tog = 1;
-                console.log("Croissant");
-            }
-            else if (tog == 1)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParAppelantDecroissant);
-                tog = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < l-1; i++)
-            {
-                var ligne = tableauAppels[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabAppel[i][j];
-                }
-            }
-            
-            
-            
-        });
-        
-        //----- CLIQUE BOUTON APPELE -----//
-        
-        const boutonAppele = document.getElementById('colonne_appele');
-        boutonAppele.addEventListener('click', function() {
-            console.log("Appele");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (tog == 0)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParAppeleCroissant);
-                tog = 1;
-                console.log("Croissant");
-            }
-            else if (tog == 1)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParAppeleDecroissant);
-                tog = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < l-1; i++)
-            {
-                var ligne = tableauAppels[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabAppel[i][j];
-                }
-            }
-            
-        });
-        
-        //----- CLIQUE BOUTON DUREE -----//
-        
-        const boutonDuree = document.getElementById('colonne_duree');
-        boutonDuree.addEventListener('click', function() {
-            console.log("Duree");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (tog == 0)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParDureeCroissant);
-                tog = 1;
-                console.log("Croissant");
-            }
-            else if (tog == 1)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParDureeDecroissant);
-                tog = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < l-1; i++)
-            {
-                var ligne = tableauAppels[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabAppel[i][j];
-                }
-            }
-            
-        });
-        
-        //----- CLIQUE BOUTON TYPE -----//
-        
-        const boutonType = document.getElementById('colonne_type');
-        boutonType.addEventListener('click', function() {
-            console.log("type");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (tog == 0)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParTypeCroissant);
-                tog = 1;
-                console.log("Croissant");
-            }
-            else if (tog == 1)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParTypeDecroissant);
-                tog = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < l-1; i++)
-            {
-                var ligne = tableauAppels[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabAppel[i][j];
-                }
-            }
-            
-        });
-        
-        
-        //----- CLIQUE BOUTON DATE -----//
-        
-        const boutonDate = document.getElementById('colonne_date');
-        boutonDate.addEventListener('click', function() {
-            console.log("date");
-            
-            //On regarde à quelle valeur est le toggle
-            
-            if (tog == 0)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParDateCroissant);
-                tog = 1;
-                console.log("Croissant");
-            }
-            else if (tog == 1)
-            {
-                
-                //On trie les lignes de l'Array tabAppel par ordre de durée Cumulée croissante.
-                tabAppel.sort(triParDateDecroissant);
-                tog = 0;
-            }
-            
-            
-            
-            //On remplace maintenant les lignes du tableau
-            for (var i = 0; i < l-1; i++)
-            {
-                var ligne = tableauAppels[i+1].cells;
-                for (var j = 0; j < ligne.length; j++)
-                {
-                    ligne[j].innerHTML = tabAppel[i][j];
-                }
-            }
-            
-        });
-        
         </script>
         
         <script id="TriLignesStat" type="text/javascript">

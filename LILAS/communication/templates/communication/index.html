@@ -760,7 +760,7 @@
             console.log(dates[0]);
         
             function DisableDates(date) {
-                var string = jQuery.datepicker.formatDate('dd/mm/yyyy', date);
+                var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
                 return [dates.indexOf(string) != -1];
             }
 

@@ -15,6 +15,7 @@ def index(request):
     
     
     #Creation de la liste qui contient les dates selectionnables dans le datepicker
+    tabDatesNonEmpty = []
     bdd_datePicker = ConfigurationSalle.objects.all()
     date__datePicker = []
     for i in range(len(bdd_datePicker)): #Cette boucle risque de prendre du temps si énormément de conf de salles sont entrées. Pour l'optimiser, il faudrait faire comme commmunciation : faire une table Date dans laquelle on entre toutes les dates à laquelle est rattachée une conf artemis

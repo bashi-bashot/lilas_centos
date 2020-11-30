@@ -76,6 +76,18 @@
         </div>
         </div>
 
+        <div hidden>
+            <table id='divHiddenDates'>
+                {% if datesNonEmpty %}
+                <tbody>
+                    {%for d in datesNonEmpty%}
+                    <tr><td>{{d}}</td></tr>
+                    {% endfor %}
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+
         <footer>
         </footer>
         
@@ -226,9 +238,21 @@
                 changeYear: true,
                 showWeek: true,
                 firstDay: 1,
+                beforeShowDay: DisableDates,
                 /*showOtherMonths: true,
                 selectOtherMonths: true*/ });
             });
+
+
+            function DisableDates(date) {
+                var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+                return [tabDatesUsed.indexOf(string) != -1];
+            }
+
+            function DisableAllDates() {
+                return [false, ''];
+            }
+            
         </script>
         
     </body>

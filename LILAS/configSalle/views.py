@@ -12,8 +12,20 @@ def index(request):
     #LISTE DE VARIABLES GLOBALES
     formulaireDates = DateForm(request.POST)
     #---------------------------
-    context = {'form':formulaireDates}
     
+    
+    #Creation de la liste qui contient les dates selectionnables dans le datepicker
+    bdd_datePicker = ConfigurationSalle.objects.all()
+    date__datePicker = []
+    for i in range(len(bdd_datePicker)): #Cette boucle risque de prendre du temps si énormément de conf de salles sont entrées. Pour l'optimiser, il faudrait faire comme commmunciation : faire une table Date dans laquelle on entre toutes les dates à laquelle est rattachée une conf artemis
+        #date__datePicker.append(strDate)
+        if(bdd_datePicker[i].date.strftime("%d/%m/%Y") not in tabDatesNonEmpty): 
+            tabDatesNonEmpty.append(bdd_datePicker[i].date.strftime("%d/%m/%Y"))
+    
+    
+    
+    context = {'form':formulaireDates, 'datesNonEmpty' : tabDatesNonEmpty}
+
     if request.method == 'POST': #Si on a rempli un formulaire /!\ Chercher comment différencier les différents formulaire d'une même page /!\
             
             if formulaireDates.is_valid(): #Si on a rempli le formulaire de choix de date / secteur / correspondant pour afficher les appels
@@ -41,7 +53,7 @@ def index(request):
                         uces = uces | confs[i].confUce.all()  #cet opérateur combine les querysets entre eux
                 
                 #On change la variable contexte à envoyer au html
-                context = { 'uceListe':uces, 'confListe':confs, 'date':date, 'form':formulaireDates}                
+                context = { 'uceListe':uces, 'confListe':confs, 'date':date, 'form':formulaireDates, 'datesNonEmpty' : tabDatesNonEmpty}                
                 # redirect to a new URL:
                 return render(request, 'configSalle/index.html', context) #On recharge la pagee                
                 
@@ -49,6 +61,6 @@ def index(request):
     else :                  #Dans le cas où on a pas récupéré un POST 
         form = DateForm()   #On crée le formulaire à afficher
         bool = True         #Permet de différencier le cas où le 'form' n'a pas été renseigné et/ou n'ets pas valide
-        context = {'bool':bool, 'form':form}
+        context = {'bool':bool, 'form':form, 'datesNonEmpty' : tabDatesNonEmpty}
         
     return render(request, 'configSalle/index.html', context)

@@ -232,6 +232,14 @@
     
         <!-- NECESSAIRE A L'AFFICHAGE DU DATEPICKER -->
         <script>
+
+            const divDates = document.getElementById('divHiddenDates').rows;
+            var tabDatesUsed = []
+            longueur = divDates.length;
+
+            console.log("nombre de dates lues dans la balise hidden : "+longueur);
+
+
             $(document).ready(function(){
                 $('#id_date').datepicker({ dateFormat: 'dd/mm/yy',
                 changeMonth: true,

@@ -237,6 +237,13 @@
             var tabDatesUsed = []
             longueur = divDates.length;
 
+            for (var i = 0; i < longueur; i++)
+            {
+                var ligne = divDates[i].cells;
+                tabDatesUsed.push(divDates[i].cells[0].innerHTML);
+                
+            }
+
             console.log("nombre de dates lues dans la balise hidden : "+longueur);
 
 

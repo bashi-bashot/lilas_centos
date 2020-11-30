@@ -234,7 +234,7 @@
         <script>
 
             const divDates = document.getElementById('divHiddenDates').rows;
-            var tabDatesUsed = []
+            var tabDatesUsed = [];
             longueur = divDates.length;
 
             for (var i = 0; i < longueur; i++)
@@ -253,7 +253,7 @@
                 changeYear: true,
                 showWeek: true,
                 firstDay: 1,
-                beforeShowDay: DisableDates,
+                beforeShowDay: DisableDates
                 /*showOtherMonths: true,
                 selectOtherMonths: true*/ });
             });
@@ -262,10 +262,6 @@
             function DisableDates(date) {
                 var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
                 return [tabDatesUsed.indexOf(string) != -1];
-            }
-
-            function DisableAllDates() {
-                return [false, ''];
             }
             
         </script>

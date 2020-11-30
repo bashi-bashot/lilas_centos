@@ -233,18 +233,23 @@
         <!-- NECESSAIRE A L'AFFICHAGE DU DATEPICKER -->
         <script>
 
-            const divDates = document.getElementById('divHiddenDates').rows;
-            var tabDatesUsed = [];
-            longueur = divDates.length;
-
-            for (var i = 0; i < longueur; i++)
+            if (document.getElementById("divHiddenDates")!=null)
             {
-                var ligne = divDates[i].cells;
-                tabDatesUsed.push(divDates[i].cells[0].innerHTML);
-                
-            }
+                const divDates = document.getElementById('divHiddenDates').rows;
+                var tabDatesUsed = [];
+                longueur = divDates.length;
+                console.log("nombre de dates lues dans la balise hidden : "+longueur);
 
-            console.log("nombre de dates lues dans la balise hidden : "+longueur);
+                for (var i = 0; i < longueur; i++)
+                {
+                    var ligne = divDates[i].cells;
+                    tabDatesUsed.push(divDates[i].cells[0].innerHTML);
+                    
+                }
+            }
+            
+
+            
 
 
             $(document).ready(function(){
@@ -260,8 +265,15 @@
 
 
             function DisableDates(date) {
-                var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
-                return [tabDatesUsed.indexOf(string) != -1];
+                if (document.getElementById("divHiddenDates")!=null)
+                {
+                    var string = jQuery.datepicker.formatDate('dd/mm/yy', date);
+                    return [tabDatesUsed.indexOf(string) != -1];
+                }
+                else 
+                {
+                    return true;
+                }
             }
             
         </script>

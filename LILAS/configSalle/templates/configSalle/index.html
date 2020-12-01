@@ -232,22 +232,22 @@
     
         <!-- NECESSAIRE A L'AFFICHAGE DU DATEPICKER -->
         <script>
-            /*
+            
             if (document.getElementById("divHiddenDates")!=null)
             {
                 const divDates = document.getElementById('divHiddenDates').rows;
                 var tabDatesUsed = [];
-                longueur = divDates.length;
-                console.log("nombre de dates lues dans la balise hidden : "+longueur);
+                longueu = divDates.length;
+                console.log("nombre de dates lues dans la balise hidden : "+longueu);
 
-                for (var i = 0; i < longueur; i++)
+                for (var i = 0; i < longueu; i++)
                 {
                     var ligne = divDates[i].cells;
                     tabDatesUsed.push(divDates[i].cells[0].innerHTML);
                     
                 }
             }
-            */
+            
 
             
 
@@ -258,12 +258,12 @@
                 changeYear: true,
                 showWeek: true,
                 firstDay: 1,
-                /*beforeShowDay: DisableDates*/
+                beforeShowDay: DisableDates
                 /*showOtherMonths: true,
                 selectOtherMonths: true*/ });
             });
 
-            /*
+            
             function DisableDates(date) {
                 if (document.getElementById("divHiddenDates")!=null)
                 {
@@ -275,7 +275,7 @@
                     return true;
                 }
             }
-            */
+            
             
         </script>
         

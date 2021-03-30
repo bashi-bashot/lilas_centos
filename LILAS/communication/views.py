@@ -605,7 +605,7 @@ def index(request):
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
                                             duree += (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
-                                            print("FLAG : "+tabJalons[j])
+                                            print("FLAG : "+tabJalons[j] + " FAISCEAU : "+listeFaisceaux[i])
                                             break
                                         p = p - 1
                                     

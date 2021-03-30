@@ -598,9 +598,18 @@ def index(request):
                             elif(tabJalons[j][1] == 1): #Fin d'appel
                                 if(simult == simultMax) :
                                     #On calcule la durée qui s'est écoulée depuis le dernier jalon
-                                    if(j != 0) : #C'est normalement impossible mais bon
-                                        if(tabJalons[j-1][1] == 0) : #on s'assure que le j-1 est une ouverture
-                                            duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
+                                    #if(j != 0) : #C'est normalement impossible mais bon
+                                    #    if(tabJalons[j-1][1] == 0) : #on s'assure que le j-1 est une ouverture
+                                    #        duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
+                                    p = j
+                                    while(p>0): #On recherche le précédent début d'appel
+                                        if(tabJalons[p-1][1] == 0) :
+                                            duree += (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
+                                            print("FLAG : "+tabJalons[j])
+                                            break
+                                        p = p - 1
+                                    
+                                        
                                 
                                 simult = simult - 1
 

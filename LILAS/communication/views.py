@@ -590,6 +590,8 @@ def index(request):
                         #print("Tri des jalons du faisceau en cours")
                         tabJalons.sort()
                         print("Tri de la table de jalons : ")
+                        for l in range(len(tabJalons)):
+                            print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut Appel numero "+str(l)+" : "+str(tabJalons[0])
 
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
@@ -610,9 +612,6 @@ def index(request):
                             elif(tabJalons[j][1] == 1): #Fin d'appel
                                 if(simult == simultMax) :
                                     #On calcule la durée qui s'est écoulée depuis le dernier jalon
-                                    #if(j != 0) : #C'est normalement impossible mais bon
-                                    #    if(tabJalons[j-1][1] == 0) : #on s'assure que le j-1 est une ouverture
-                                    #        duree += (tabJalons[j][0] - tabJalons[j-1][0]).total_seconds()
                                     p = j
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
@@ -625,7 +624,8 @@ def index(request):
                                 simult = simult - 1
                         if(len(listeMaxOccupation) < 5):
                             for l in range(len(listeMaxOccupation)):
-                                print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
+                                #print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
+                                pass
                                 
                         #print("Ecriture de l'occupation faisceau")
                         listeStat[i][5] = (simultMax, compteur_max, duree)

@@ -302,6 +302,7 @@ def index(request):
                 # listeStat = statistiquesIndifferent(listeDates)
                 
                 listeStat = []
+                listeJalons = []
                 typeElement = formulaireDates.cleaned_data['selectionTypeSpinner']
                 formulaireDates = NameForm(request.POST)
                 
@@ -619,6 +620,7 @@ def index(request):
                                 
                         #print("Ecriture de l'occupation faisceau")
                         listeStat[i][5] = (simultMax, compteur_max, duree)
+                        listeJalons = tabJalons
                         
                             
                     #------------------------------
@@ -710,7 +712,7 @@ def index(request):
                 #print(len(listeStat))
                 
                 
-                context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty} #, 'ListeStats':listeStat
+                context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty, 'listeJalons' : listeJalons} #, 'ListeStats':listeStat
                 
 
                 # context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 

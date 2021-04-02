@@ -560,7 +560,7 @@ def index(request):
                                 ind_entrant = listeFaisceaux.index(appel.fx_entrant)
                             if appel.fx_sortant in listeFaisceaux :
                                 ind_sortant = listeFaisceaux.index(appel.fx_sortant)
-                            if(ind_entrant != ind_sortant:)
+                            if(ind_entrant != ind_sortant) :
                                 #On ajoute maintenant l'appel à listeAppelsParFaisceaux au bon indice
                                 if(ind_entrant != -1) :
                                     listeAppelsParFaisceaux[ind_entrant].append(appel)

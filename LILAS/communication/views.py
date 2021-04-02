@@ -587,8 +587,8 @@ def index(request):
                         #print("Tri des jalons du faisceau en cours")
                         tabJalons.sort()
                         print("Tri de la table de jalons : ")
-                        for l in range(len(tabJalons)):
-                            print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut Appel numero "+str(l)+" : "+str(tabJalons[0]))
+                        #for l in range(len(tabJalons)):
+                        #    print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut Appel numero "+str(l)+" : "+str(tabJalons[0]))
 
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
@@ -621,7 +621,7 @@ def index(request):
                                 simult = simult - 1
                         if(len(listeMaxOccupation) < 5):
                             for l in range(len(listeMaxOccupation)):
-                                #print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
+                                print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
                                 pass
                                 
                         #print("Ecriture de l'occupation faisceau")

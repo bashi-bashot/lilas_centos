@@ -585,7 +585,8 @@ def index(request):
                         tabJalons.sort()
                         print("Tri de la table de jalons : ")
                         for l in range(len(tabJalons)):
-                            print(tabJalons[l])
+                            print("FLAG : "+str(tabJalons[L]) + " FAISCEAU : "+listeFaisceaux[i])
+                            
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
                         simultMax = 0
@@ -609,7 +610,7 @@ def index(request):
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
                                             duree += (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
-                                            print("FLAG : "+str(tabJalons[j]) + " FAISCEAU : "+listeFaisceaux[i])
+                                            
                                             break
                                         p = p - 1
                                     

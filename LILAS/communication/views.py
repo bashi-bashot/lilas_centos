@@ -585,8 +585,8 @@ def index(request):
                         tabJalons.sort()
                         print("Tri de la table de jalons : ")
                         for l in range(len(tabJalons)):
-                            print("FLAG : "+str(tabJalons[L]) + " FAISCEAU : "+listeFaisceaux[i])
-                            
+                            print("FLAG : "+str(tabJalons[l]) + " FAISCEAU : "+listeFaisceaux[i])
+
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
                         simultMax = 0

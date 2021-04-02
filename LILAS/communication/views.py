@@ -612,7 +612,7 @@ def index(request):
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
                                             duree += (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
-                                            listeMaxOccupation.append((tabJalons[p-1][1], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))
+                                            listeMaxOccupation.append((tabJalons[p-1][0], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))
                                             break
                                         p = p - 1
                                     

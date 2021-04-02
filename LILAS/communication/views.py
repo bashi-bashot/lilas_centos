@@ -619,7 +619,7 @@ def index(request):
                                             break
                                         p = p - 1
                                 simult = simult - 1
-                        if(len(listeMaxOccupation) < 5):
+                        if(len(listeMaxOccupation) <= 5):
                             for l in range(len(listeMaxOccupation)):
                                 print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
                                 pass

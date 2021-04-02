@@ -568,7 +568,7 @@ def index(request):
 
                     #print("Calcul de l'occupation Faisceau :")
                     #print("Remplissage du tableau de calcul")
-                    for i in range(len(listeAppelsParFaisceaux)):
+                    for i in range(len(listeAppelsParFaisceaux)): #Pour chaque faisceau
                         tabJalons = [] #Une table pour un faisceau
                         for appel in listeAppelsParFaisceaux[i] :
                             dateDebAppel = appel.date
@@ -582,6 +582,9 @@ def index(request):
                         
                         #print("Tri des jalons du faisceau en cours")
                         tabJalons.sort()
+                        print("Tri de la table de jalons : ")
+                        for l in range(len(tabJalons)):
+                            print(tabJalons[l])
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
                         simultMax = 0

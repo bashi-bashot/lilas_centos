@@ -138,7 +138,7 @@ def index(request):
                     listeDates = listeDates | liste_de_dates[liste_de_dates.count()-1].Appel.all().filter(heure__lte = date_time_fin_aware.time())
 
                 listeDates = listeDates.filter(duree__lt=1000)
-                listeDates = listeDates.filter(duree__gt=0)
+                #listeDates = listeDates.filter(duree__gt=0)
 
                 #Pour le dernier jour, on ne prend que les appels passés avant l'heure de fin
                 #QuerySetDateFinAppels =  liste_de_dates[liste_de_dates.count()-1].Appel.all()

@@ -614,7 +614,7 @@ def index(request):
                                     p = j
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
-                                        delta = (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
+                                            delta = (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
                                             #if(delta != 0):
                                             duree += delta
                                             listeMaxOccupation.append((tabJalons[p-1][0], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))

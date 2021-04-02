@@ -597,6 +597,7 @@ def index(request):
                                 simult = simult + 1
                                 if(simult > simultMax): #On reset les variables
                                     simultMax = simult
+                                    duree = 0
                                     compteur_max = 1
                                 elif(simult == simultMax):
                                     compteur_max = compteur_max + 1

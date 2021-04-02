@@ -614,19 +614,16 @@ def index(request):
                                     p = j
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
-                                            delta = (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
-                                            if(delta != 0):
-                                                duree += delta
-                                                listeMaxOccupation.append((tabJalons[p-1][0], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))
+                                        delta = (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
+                                            #if(delta != 0):
+                                            duree += delta
+                                            listeMaxOccupation.append((tabJalons[p-1][0], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))
                                             break
                                         p = p - 1
-                                    
-                                        
-                                
                                 simult = simult - 1
                         if(len(listeMaxOccupation) < 5):
                             for l in range(len(listeMaxOccupation)):
-                                print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Début occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Durée : "+str(listeMaxOccupation[l][1]))
+                                print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Debut occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Duree : "+str(listeMaxOccupation[l][1]))
                                 
                         #print("Ecriture de l'occupation faisceau")
                         listeStat[i][5] = (simultMax, compteur_max, duree)

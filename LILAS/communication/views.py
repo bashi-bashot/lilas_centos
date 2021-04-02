@@ -619,8 +619,9 @@ def index(request):
                                         
                                 
                                 simult = simult - 1
-                        for l in range(len(listeMaxOccupation)):
-                            print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Début occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Durée : "+str(listeMaxOccupation[l][1]))
+                        if(len(listeMaxOccupation) < 5):
+                            for l in range(len(listeMaxOccupation)):
+                                print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Début occurrence "+str(l)+" : "+str(listeMaxOccupation[l][0])+" --> Durée : "+str(listeMaxOccupation[l][1]))
                                 
                         #print("Ecriture de l'occupation faisceau")
                         listeStat[i][5] = (simultMax, compteur_max, duree)

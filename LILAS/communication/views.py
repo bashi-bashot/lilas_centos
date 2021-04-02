@@ -596,6 +596,7 @@ def index(request):
                         simultMax = 0
                         simult = 0
                         duree = 0 #Duree pendant laquelle le nb max d'appels simultanés sur la période est atteint
+                        listeMaxOccupation = []
                         for j in range(len(tabJalons)) :
                             if(tabJalons[j][1] == 0): #Début d'appel
                                 simult = simult + 1

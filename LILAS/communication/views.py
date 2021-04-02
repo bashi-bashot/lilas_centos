@@ -302,7 +302,7 @@ def index(request):
                 # listeStat = statistiquesIndifferent(listeDates)
                 
                 listeStat = []
-                listeJalons = []
+                
                 typeElement = formulaireDates.cleaned_data['selectionTypeSpinner']
                 formulaireDates = NameForm(request.POST)
                 
@@ -504,6 +504,8 @@ def index(request):
                     listeFaisceaux = [] #Liste dans laquelle on va répertorier tous les faisceaux rencontrés
                     indice_entrant = -1
                     indice_sortant = -1
+
+                    listeMaxOccupation = []
                     
                     for appel in listeDates :
                         if appel.fx_entrant != 'fx_xxxx_e' : #On s'occupe de FX_ENTRANT
@@ -584,8 +586,6 @@ def index(request):
                         #print("Tri des jalons du faisceau en cours")
                         tabJalons.sort()
                         print("Tri de la table de jalons : ")
-                        for l in range(len(tabJalons)):
-                            print("FLAG : "+str(tabJalons[l]) + " FAISCEAU : "+listeFaisceaux[i])
 
                         #print("Calcul de l'occupation faisceau")
                         compteur_max = 0 #Compteur du nb de fois que l'occurrence max est atteinte
@@ -597,6 +597,7 @@ def index(request):
                                 simult = simult + 1
                                 if(simult > simultMax): #On reset les variables
                                     simultMax = simult
+                                    listeMaxOccupation = []
                                     duree = 0
                                     compteur_max = 1
                                 elif(simult == simultMax):
@@ -611,18 +612,19 @@ def index(request):
                                     while(p>0): #On recherche le précédent début d'appel
                                         if(tabJalons[p-1][1] == 0) :
                                             duree += (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()
-                                            
+                                            listeMaxOccupation.append((tabJalons[p-1][1], (tabJalons[j][0] - tabJalons[p-1][0]).total_seconds()))
                                             break
                                         p = p - 1
                                     
                                         
                                 
                                 simult = simult - 1
-
+                        for l in range(len(listeMaxOccupation)):
+                            print("FLAG : FAISCEAU : "+listeFaisceaux[i]+" Début occurrence "+l+" : "+str(listeMaxOccupation[l][0])+" --> Durée : "+listeMaxOccupation[l][1])
                                 
                         #print("Ecriture de l'occupation faisceau")
                         listeStat[i][5] = (simultMax, compteur_max, duree)
-                        listeJalons = tabJalons
+                        
                         
                             
                     #------------------------------
@@ -714,7 +716,7 @@ def index(request):
                 #print(len(listeStat))
                 
                 
-                context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty, 'listeJalons' : listeJalons} #, 'ListeStats':listeStat
+                context = {'AppelListe':listeDates, 'form':formulaireDates, 'ListeStats':listeStat, 'valid_date':date__datePicker, 'datesNonEmpty' : tabDatesNonEmpty} #, 'ListeStats':listeStat
                 
 
                 # context = {'AppelListe':listeDates,'form':formulaireDates, 'statForm':formulaireStatistiques, 'ListeStats':listeStat} 

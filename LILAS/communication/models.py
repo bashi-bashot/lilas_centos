@@ -55,8 +55,8 @@ class Faisceau(models.Model):
         verbose_name_plural = "Faisceaux"
     
 class LIF(models.Model):
-    id_elts = models.CharField(max_length=4)
-    id_lilas = models.CharField(max_length=4)
+    id_elts = models.CharField(max_length=5)
+    id_lilas = models.CharField(max_length=5)
     faisceau = models.ForeignKey(Faisceau, on_delete=models.CASCADE)
     nom = models.CharField(max_length=30)
     
